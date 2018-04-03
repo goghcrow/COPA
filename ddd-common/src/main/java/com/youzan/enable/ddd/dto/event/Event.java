@@ -1,6 +1,8 @@
 package com.youzan.enable.ddd.dto.event;
 
 import com.youzan.enable.ddd.dto.DTO;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author shawnzhan.zxy
@@ -8,26 +10,12 @@ import com.youzan.enable.ddd.dto.DTO;
  */
 public class Event extends DTO {
     private static final long serialVersionUID = 5740150436439366761L;
+
+    @Getter
+    @Setter
     protected String eventId;
+
+    @Getter
+    @Setter
     protected String eventType;
-
-    /**
-     * event type,for example "CREATE"/"UPDATE"...
-     * @return
-     */
-    public String getEventType(){
-        return eventType;
-    }
-
-    public String getEventId(){
-        return eventId;
-    }
-
-    public void setEventId(String eventId) {
-        this.eventId = eventId;
-    }
-
-    public void setEventType(String eventType) {
-        this.eventType = eventType;
-    }
 }

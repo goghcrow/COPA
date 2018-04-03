@@ -38,7 +38,7 @@ public class Bootstrap {
     private void registerBeans(Set<Class<?>> classSet) {
         for (Class<?> targetClz : classSet) {
             Register register = registerFactory.getRegister(targetClz);
-            if (null != register) {
+            if (register != null) {
                 register.doRegistration(targetClz);
             }
         }

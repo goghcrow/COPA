@@ -21,7 +21,7 @@ public class RuleExecutor extends ExtensionExecutor {
     @Override
     protected <C> C locateComponent(Class<C> targetClz) {
         C rule = (C) plainRuleRepository.getPlainRules().get(targetClz);
-        return null != rule ? rule : super.locateComponent(targetClz);
+        return rule != null ? rule : super.locateComponent(targetClz);
     }
 
     public void validate(Class<? extends Rule> targetClz, Object... candidate) {

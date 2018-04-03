@@ -52,15 +52,15 @@ public class RegisterFactory{
         if (extensionAnn != null) {
             return extensionRegister;
         }
+        Event eventHandlerAnn = targetClz.getDeclaredAnnotation(Event.class);
+        if (eventHandlerAnn != null) {
+            return eventRegister;
+        }
         if (isPlainValidator(targetClz)) {
             return plainValidatorRegister;
         }
         if (isPlainRule(targetClz)) {
             return plainRuleRegister;
-        }
-        Event eventHandlerAnn = targetClz.getDeclaredAnnotation(Event.class);
-        if (eventHandlerAnn != null) {
-            return eventRegister;
         }
         return null;
     }

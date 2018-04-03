@@ -10,6 +10,11 @@ import java.util.Map;
  */
 public class Context {
 
+    /**
+     * 不支持 Command 嵌套执行, 否则可修改为
+     */
+    // ThreadLocal<Stack<Map<String, Object>>>
+
     private static ThreadLocal<Map<String, Object>> context = new ThreadLocal<>();
 
     public static Map<String, Object> get() {
