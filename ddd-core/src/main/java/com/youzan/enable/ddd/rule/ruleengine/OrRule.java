@@ -1,6 +1,6 @@
 package com.youzan.enable.ddd.rule.ruleengine;
 
-import com.youzan.enable.ddd.rule.IRule;
+import com.youzan.enable.ddd.rule.Rule;
 
 /**
  * 组合Or的业务规则
@@ -8,10 +8,10 @@ import com.youzan.enable.ddd.rule.IRule;
  *
  */
 public class OrRule extends AbstractRule {
-	IRule one;
-	IRule other;
+	Rule one;
+	Rule other;
 
-	public OrRule(IRule x, IRule y){
+	public OrRule(Rule x, Rule y){
 		one = x;
 		other = y;
 	}

@@ -5,7 +5,7 @@ package com.youzan.enable.ddd.exception;
  *
  * Created by fulan.zjf on 2017/12/18.
  */
-public interface IErrorCode {
+public interface ErrorCode {
 
     int getErrCode();
 

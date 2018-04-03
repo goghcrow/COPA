@@ -9,7 +9,7 @@ import java.io.Serializable;
  * 
  * @author fulan.zjf 2017年10月21日 下午8:53:55
  */
-public class DTO implements Serializable{
+public class DTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

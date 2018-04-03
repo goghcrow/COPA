@@ -5,5 +5,5 @@ package com.youzan.enable.ddd.repository;
  * 
  * @author fulan.zjf 2017年10月27日 上午11:07:26
  */
-public interface IRepository {
+public interface Repository {
 }

@@ -1,7 +1,7 @@
 package com.youzan.enable.ddd.test.customer.interceptor;
 
-import com.youzan.enable.ddd.command.ICommandInterceptor;
-import com.youzan.enable.ddd.command.PreInterceptor;
+import com.youzan.enable.ddd.command.CommandInterceptor;
+import com.youzan.enable.ddd.annotation.PreInterceptor;
 import com.youzan.enable.ddd.dto.Command;
 
 /**
@@ -11,7 +11,7 @@ import com.youzan.enable.ddd.dto.Command;
  * @date 2018-01-07 1:21 AM
  */
 @PreInterceptor
-public class ContextInterceptor  implements ICommandInterceptor {
+public class ContextInterceptor  implements CommandInterceptor {
 
     @Override
     public void preIntercept(Command command) {

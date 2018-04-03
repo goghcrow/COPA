@@ -1,7 +1,7 @@
 package com.youzan.enable.ddd.test.customer.validator.extensionpoint;
 
-import com.youzan.enable.ddd.extension.IExtensionPoint;
-import com.youzan.enable.ddd.validator.IValidator;
+import com.youzan.enable.ddd.extension.ExtensionPoint;
+import com.youzan.enable.ddd.validator.Validator;
 
 /**
  * AddCustomerValidatorExtPt
@@ -9,6 +9,6 @@ import com.youzan.enable.ddd.validator.IValidator;
  * @author Frank Zhang
  * @date 2018-01-07 1:27 AM
  */
-public interface AddCustomerValidatorExtPt extends IValidator, IExtensionPoint {
+public interface AddCustomerValidatorExtPt extends Validator, ExtensionPoint {
 
 }

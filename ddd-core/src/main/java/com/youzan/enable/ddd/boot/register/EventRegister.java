@@ -1,10 +1,10 @@
 package com.youzan.enable.ddd.boot.register;
 
-import com.youzan.enable.ddd.boot.IRegister;
+import com.youzan.enable.ddd.boot.Register;
 import com.youzan.enable.ddd.common.CoreConstant;
 import com.youzan.enable.ddd.dto.event.Event;
 import com.youzan.enable.ddd.event.EventHub;
-import com.youzan.enable.ddd.event.IEventHandler;
+import com.youzan.enable.ddd.event.EventHandler;
 import com.youzan.enable.ddd.exception.InfraException;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -22,7 +22,7 @@ import java.lang.reflect.Method;
  */
 @SuppressWarnings({ "rawtypes", "unchecked" })
 @Component
-public class EventRegister implements IRegister, ApplicationContextAware {
+public class EventRegister implements Register, ApplicationContextAware {
 
     @Resource
     private EventHub eventHub;
@@ -32,7 +32,7 @@ public class EventRegister implements IRegister, ApplicationContextAware {
     @Override
     public void doRegistration(Class<?> targetClz) {
         Class<? extends Event> eventClz = getEventFromExecutor(targetClz);
-        IEventHandler executor = (IEventHandler) applicationContext.getBean(targetClz);
+        EventHandler executor = (EventHandler) applicationContext.getBean(targetClz);
         eventHub.register(eventClz, executor);
     }
 

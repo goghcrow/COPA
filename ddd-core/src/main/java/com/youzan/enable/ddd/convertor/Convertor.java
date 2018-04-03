@@ -5,7 +5,7 @@ package com.youzan.enable.ddd.convertor;
  *
  * @author fulan.zjf on 2017/12/16.
  */
-public interface IConvertor<C, E, D> {
+public interface Convertor<C, E, D> {
 
     default C entityToClient(E entityObject){return null;}
 

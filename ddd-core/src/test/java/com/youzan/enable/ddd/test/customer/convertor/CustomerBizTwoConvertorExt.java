@@ -1,7 +1,7 @@
 package com.youzan.enable.ddd.test.customer.convertor;
 
 import com.youzan.enable.ddd.context.Context;
-import com.youzan.enable.ddd.extension.Extension;
+import com.youzan.enable.ddd.annotation.Extension;
 import com.youzan.enable.ddd.test.customer.Constants;
 import com.youzan.enable.ddd.test.customer.CustomerCO;
 import com.youzan.enable.ddd.test.customer.entity.CustomerEntity;

@@ -1,6 +1,6 @@
 package com.youzan.enable.ddd.rule.ruleengine;
 
-import com.youzan.enable.ddd.rule.IRule;
+import com.youzan.enable.ddd.rule.Rule;
 
 /**
  * 组合Not的业务规则
@@ -8,9 +8,9 @@ import com.youzan.enable.ddd.rule.IRule;
  *
  */
 public class NotRule extends AbstractRule {
-	IRule wrapped;
+	Rule wrapped;
 
-	public NotRule(IRule x){
+	public NotRule(Rule x){
 		wrapped = x;
 	}
 

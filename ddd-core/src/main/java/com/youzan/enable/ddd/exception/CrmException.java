@@ -10,7 +10,7 @@ public abstract class CrmException extends RuntimeException{
 
     private static final long serialVersionUID = 1L;
     
-    private IErrorCode errCode;
+    private ErrorCode errCode;
     
     public CrmException(String errMessage){
         super(errMessage);
@@ -20,11 +20,11 @@ public abstract class CrmException extends RuntimeException{
         super(errMessage, e);
     }
     
-    public IErrorCode getErrCode() {
+    public ErrorCode getErrCode() {
         return errCode;
     }
     
-    public void setErrCode(IErrorCode errCode) {
+    public void setErrCode(ErrorCode errCode) {
         this.errCode = errCode;
     }
     

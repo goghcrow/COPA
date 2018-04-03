@@ -1,7 +1,7 @@
 package com.youzan.enable.ddd.boot.register;
 
-import com.youzan.enable.ddd.boot.IRegister;
-import com.youzan.enable.ddd.validator.IValidator;
+import com.youzan.enable.ddd.boot.Register;
+import com.youzan.enable.ddd.validator.Validator;
 import com.youzan.enable.ddd.validator.PlainValidatorRepository;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -16,7 +16,7 @@ import javax.annotation.Resource;
  * @date 2017/12/21
  */
 @Component
-public class PlainValidatorRegister implements IRegister, ApplicationContextAware {
+public class PlainValidatorRegister implements Register, ApplicationContextAware {
 
     @Resource
     private PlainValidatorRepository plainValidatorRepository;
@@ -25,7 +25,7 @@ public class PlainValidatorRegister implements IRegister, ApplicationContextAwar
 
     @Override
     public void doRegistration(Class<?> targetClz) {
-        IValidator plainValidator= (IValidator) applicationContext.getBean(targetClz);
+        Validator plainValidator= (Validator) applicationContext.getBean(targetClz);
         plainValidatorRepository.getPlainValidators().put(plainValidator.getClass(), plainValidator);
     }
 

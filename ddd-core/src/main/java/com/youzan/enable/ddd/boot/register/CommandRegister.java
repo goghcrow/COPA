@@ -1,11 +1,11 @@
 package com.youzan.enable.ddd.boot.register;
 
 import com.google.common.collect.Iterables;
-import com.youzan.enable.ddd.boot.IRegister;
+import com.youzan.enable.ddd.boot.Register;
 import com.youzan.enable.ddd.command.CommandHub;
 import com.youzan.enable.ddd.command.CommandInvocation;
-import com.youzan.enable.ddd.command.ICommandExecutor;
-import com.youzan.enable.ddd.command.ICommandInterceptor;
+import com.youzan.enable.ddd.command.CommandExecutor;
+import com.youzan.enable.ddd.command.CommandInterceptor;
 import com.youzan.enable.ddd.common.CoreConstant;
 import com.youzan.enable.ddd.dto.Command;
 import com.youzan.enable.ddd.exception.InfraException;
@@ -25,7 +25,7 @@ import java.lang.reflect.Method;
 
 @SuppressWarnings({ "rawtypes", "unchecked" })
 @Component
-public class CommandRegister implements IRegister, ApplicationContextAware {
+public class CommandRegister implements Register, ApplicationContextAware {
 
     @Resource
     private CommandHub         commandHub;
@@ -36,7 +36,7 @@ public class CommandRegister implements IRegister, ApplicationContextAware {
     public void doRegistration(Class<?> targetClz) {
         Class<? extends Command> commandClz = getCommandFromExecutor(targetClz);
         CommandInvocation commandInvocation = new CommandInvocation();
-        commandInvocation.setCommandExecutor((ICommandExecutor) applicationContext.getBean(targetClz));
+        commandInvocation.setCommandExecutor((CommandExecutor) applicationContext.getBean(targetClz));
         commandInvocation.setPreInterceptors(collectInterceptors(commandClz, true));
         commandInvocation.setPostInterceptors(collectInterceptors(commandClz, false));
         commandHub.getCommandRepository().put(commandClz, commandInvocation);
@@ -59,11 +59,11 @@ public class CommandRegister implements IRegister, ApplicationContextAware {
                                  + "() is not detected");
     }
 
-    private Iterable<ICommandInterceptor> collectInterceptors(Class<? extends Command> commandClass, boolean pre) {
+    private Iterable<CommandInterceptor> collectInterceptors(Class<? extends Command> commandClass, boolean pre) {
         /**
          * add 通用的Interceptors
          */
-        Iterable<ICommandInterceptor> commandItr = Iterables.concat((pre ? commandHub.getGlobalPreInterceptors() : commandHub.getGlobalPostInterceptors()));
+        Iterable<CommandInterceptor> commandItr = Iterables.concat((pre ? commandHub.getGlobalPreInterceptors() : commandHub.getGlobalPostInterceptors()));
         /**
          * add command自己专属的Interceptors
          */

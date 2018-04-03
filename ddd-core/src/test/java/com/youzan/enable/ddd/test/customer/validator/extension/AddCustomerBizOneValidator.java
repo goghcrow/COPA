@@ -2,7 +2,7 @@ package com.youzan.enable.ddd.test.customer.validator.extension;
 
 import com.youzan.enable.ddd.context.Context;
 import com.youzan.enable.ddd.exception.BizException;
-import com.youzan.enable.ddd.extension.Extension;
+import com.youzan.enable.ddd.annotation.Extension;
 import com.youzan.enable.ddd.test.customer.AddCustomerCmd;
 import com.youzan.enable.ddd.test.customer.Constants;
 import com.youzan.enable.ddd.test.customer.CustomerType;

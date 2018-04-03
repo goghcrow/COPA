@@ -1,17 +1,16 @@
-package com.youzan.enable.ddd.extension;
+package com.youzan.enable.ddd.annotation;
 
 import org.springframework.stereotype.Component;
 
 import java.lang.annotation.*;
 
 /**
- * Extension 
- * @author fulan.zjf 2017-11-05
+ * @author shawnzhan.zxy
+ * @date 2017/11/20
  */
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 @Component
-public @interface Extension {
-    int order() default 0;
+public @interface Event {
 }

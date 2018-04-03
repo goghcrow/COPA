@@ -1,23 +1,23 @@
 package com.youzan.enable.ddd.rule.ruleengine;
 
-import com.youzan.enable.ddd.rule.IRule;
+import com.youzan.enable.ddd.rule.Rule;
 
 /**
  * 业务规则的抽象实现，可用于组合规则
  * @author xueliang.sxl
  *
  */
-public abstract class AbstractRule implements IRule {
+public abstract class AbstractRule implements Rule {
 
-	public IRule and(IRule other) {
+	public Rule and(Rule other) {
 		return new AndRule(this, other);
 	}
 
-	public IRule or(IRule other) {
+	public Rule or(Rule other) {
 		return new OrRule(this, other);
 	}
 
-	public IRule not() {
+	public Rule not() {
 		return new NotRule(this);
 	}
 

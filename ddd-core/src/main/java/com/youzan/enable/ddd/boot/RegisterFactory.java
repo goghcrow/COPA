@@ -1,13 +1,13 @@
 package com.youzan.enable.ddd.boot;
 
 import com.youzan.enable.ddd.boot.register.*;
-import com.youzan.enable.ddd.command.Command;
-import com.youzan.enable.ddd.command.PostInterceptor;
-import com.youzan.enable.ddd.command.PreInterceptor;
+import com.youzan.enable.ddd.annotation.Command;
+import com.youzan.enable.ddd.annotation.PostInterceptor;
+import com.youzan.enable.ddd.annotation.PreInterceptor;
 import com.youzan.enable.ddd.common.CoreConstant;
-import com.youzan.enable.ddd.event.EventHandler;
+import com.youzan.enable.ddd.annotation.Event;
 import com.youzan.enable.ddd.exception.InfraException;
-import com.youzan.enable.ddd.extension.Extension;
+import com.youzan.enable.ddd.annotation.Extension;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -35,7 +35,7 @@ public class RegisterFactory{
     @Resource
     private PlainRuleRegister plainRuleRegister;
 
-    public IRegister getRegister(Class<?> targetClz) {
+    public Register getRegister(Class<?> targetClz) {
         PreInterceptor preInterceptorAnn = targetClz.getDeclaredAnnotation(PreInterceptor.class);
         if (preInterceptorAnn != null) {
             return preInterceptorRegister;
@@ -58,7 +58,7 @@ public class RegisterFactory{
         if (isPlainRule(targetClz)) {
             return plainRuleRegister;
         }
-        EventHandler eventHandlerAnn = targetClz.getDeclaredAnnotation(EventHandler.class);
+        Event eventHandlerAnn = targetClz.getDeclaredAnnotation(Event.class);
         if (eventHandlerAnn != null) {
             return eventRegister;
         }
@@ -66,14 +66,14 @@ public class RegisterFactory{
     }
 
     private boolean isPlainRule(Class<?> targetClz) {
-        if (ClassInterfaceChecker.check(targetClz, CoreConstant.IRULE_CLASS) && makeSureItsNotExtensionPoint(targetClz)) {
+        if (ClassInterfaceChecker.check(targetClz, CoreConstant.RULE_CLASS) && makeSureItsNotExtensionPoint(targetClz)) {
             return true;
         }
         return false;
     }
 
     private boolean isPlainValidator(Class<?> targetClz) {
-        if (ClassInterfaceChecker.check(targetClz, CoreConstant.IVALIDATOR_CLASS) && makeSureItsNotExtensionPoint(targetClz)) {
+        if (ClassInterfaceChecker.check(targetClz, CoreConstant.VALIDATOR_CLASS) && makeSureItsNotExtensionPoint(targetClz)) {
             return true;
         }
         return false;

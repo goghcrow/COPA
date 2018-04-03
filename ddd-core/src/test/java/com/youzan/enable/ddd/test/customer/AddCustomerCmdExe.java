@@ -1,8 +1,8 @@
 package com.youzan.enable.ddd.test.customer;
 
 import com.youzan.api.common.response.BaseResult;
-import com.youzan.enable.ddd.command.Command;
-import com.youzan.enable.ddd.command.ICommandExecutor;
+import com.youzan.enable.ddd.annotation.Command;
+import com.youzan.enable.ddd.command.CommandExecutor;
 import com.youzan.enable.ddd.extension.ExtensionExecutor;
 import com.youzan.enable.ddd.test.customer.convertor.CustomerConvertorExtPt;
 import com.youzan.enable.ddd.test.customer.entity.CustomerEntity;
@@ -19,7 +19,7 @@ import javax.annotation.Resource;
  */
 @Command
 @Slf4j
-public class AddCustomerCmdExe implements ICommandExecutor<BaseResult, AddCustomerCmd> {
+public class AddCustomerCmdExe implements CommandExecutor<BaseResult, AddCustomerCmd> {
     
     @Resource
     private ValidatorExecutor validatorExecutor;

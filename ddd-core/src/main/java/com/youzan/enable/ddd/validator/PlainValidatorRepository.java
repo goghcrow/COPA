@@ -14,5 +14,5 @@ import java.util.Map;
 @Component
 public class PlainValidatorRepository {
     @Getter
-    private Map<Class<? extends IValidator>, IValidator> plainValidators = new HashMap<>();
+    private Map<Class<? extends Validator>, Validator> plainValidators = new HashMap<>();
 }

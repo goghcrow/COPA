@@ -5,7 +5,7 @@ package com.youzan.enable.ddd.rule;
  * @author xueliang.sxl
  *
  */
-public interface IRule {
+public interface Rule {
 
 	/**
 	 * 默认的规则检查接口，子接口可自定义

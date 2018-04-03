@@ -9,7 +9,7 @@ public class BizException extends CrmException{
         this.setErrCode(BasicErrorCode.BIZ_ERROR);
     }
 
-    public BizException(IErrorCode errCode, String errMessage){
+    public BizException(ErrorCode errCode, String errMessage){
     	super(errMessage);
     	this.setErrCode(errCode);
     }

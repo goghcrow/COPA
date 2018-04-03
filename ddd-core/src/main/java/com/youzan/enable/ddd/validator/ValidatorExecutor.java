@@ -16,8 +16,8 @@ public class ValidatorExecutor extends ExtensionExecutor {
     @Resource
     private PlainValidatorRepository plainValidatorRepository;
 
-    public void validate(Class<? extends IValidator> targetClz, Object candidate) {
-        IValidator validator = locateComponent(targetClz);
+    public void validate(Class<? extends Validator> targetClz, Object candidate) {
+        Validator validator = locateComponent(targetClz);
         validator.validate(candidate);
     }
 

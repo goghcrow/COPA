@@ -5,7 +5,7 @@ package com.youzan.enable.ddd.domain;
  * @author xueliang.sxl
  *
  */
-public interface IDomainFactory<T extends Entity> {
+public interface DomainFactory<T extends Entity> {
 
 	T create();
 

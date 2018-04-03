@@ -8,7 +8,7 @@ import com.youzan.api.common.response.PlainResult;
  *
  * @author Frank Zhang 2018-01-06 7:24 PM
  */
-public interface CustomerServiceI {
+public interface CustomerService {
     BaseResult addCustomer(AddCustomerCmd addCustomerCmd);
     PlainResult<CustomerCO> getCustomer(GetOneCustomerQry getOneCustomerQry);
 }

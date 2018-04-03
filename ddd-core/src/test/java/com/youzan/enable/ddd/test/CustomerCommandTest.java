@@ -30,7 +30,7 @@ public class CustomerCommandTest {
     public ExpectedException exception = ExpectedException.none();
 
     @Resource
-    private CustomerServiceI customerService;
+    private CustomerService customerService;
 
     @Value("${bizCode}")
     private String bizCode;

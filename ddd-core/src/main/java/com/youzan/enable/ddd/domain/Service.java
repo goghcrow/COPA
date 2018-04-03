@@ -5,6 +5,6 @@ package com.youzan.enable.ddd.domain;
  * @author xueliang.sxl
  *
  */
-public interface IService {
+public interface Service {
 
 }

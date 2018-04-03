@@ -9,7 +9,7 @@ public class ParamException extends CrmException{
         this.setErrCode(BasicErrorCode.PARAM_ERROR);
     }
 
-    public ParamException(IErrorCode errCode, String errMessage){
+    public ParamException(ErrorCode errCode, String errMessage){
         super(errMessage);
         this.setErrCode(errCode);
     }

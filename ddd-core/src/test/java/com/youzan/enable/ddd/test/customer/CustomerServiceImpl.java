@@ -2,7 +2,7 @@ package com.youzan.enable.ddd.test.customer;
 
 import com.youzan.api.common.response.BaseResult;
 import com.youzan.api.common.response.PlainResult;
-import com.youzan.enable.ddd.command.ICommandBus;
+import com.youzan.enable.ddd.command.CommandBus;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -13,10 +13,10 @@ import javax.annotation.Resource;
  * @author Frank Zhang 2018-01-06 7:40 PM
  */
 @Service
-public class CustomerServiceImpl implements CustomerServiceI{
+public class CustomerServiceImpl implements CustomerService {
 
     @Resource
-    private ICommandBus commandBus;
+    private CommandBus commandBus;
 
     @Override
     public BaseResult addCustomer(AddCustomerCmd addCustomerCmd) {

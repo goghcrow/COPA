@@ -24,8 +24,8 @@ public class RuleExecutor extends ExtensionExecutor {
         return null != rule ? rule : super.locateComponent(targetClz);
     }
 
-    public void validate(Class<? extends IRule> targetClz, Object... candidate) {
-        IRule rule = this.locateComponent(targetClz);
+    public void validate(Class<? extends Rule> targetClz, Object... candidate) {
+        Rule rule = this.locateComponent(targetClz);
         rule.validate(candidate);
     }
 }

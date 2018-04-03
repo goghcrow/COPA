@@ -1,7 +1,7 @@
 package com.youzan.enable.ddd.boot.register;
 
-import com.youzan.enable.ddd.boot.IRegister;
-import com.youzan.enable.ddd.rule.IRule;
+import com.youzan.enable.ddd.boot.Register;
+import com.youzan.enable.ddd.rule.Rule;
 import com.youzan.enable.ddd.rule.PlainRuleRepository;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -16,7 +16,7 @@ import javax.annotation.Resource;
  * @date 2017/12/21
  */
 @Component
-public class PlainRuleRegister implements IRegister, ApplicationContextAware {
+public class PlainRuleRegister implements Register, ApplicationContextAware {
 
     @Resource
     private PlainRuleRepository plainRuleRepository;
@@ -25,7 +25,7 @@ public class PlainRuleRegister implements IRegister, ApplicationContextAware {
 
     @Override
     public void doRegistration(Class<?> targetClz) {
-        IRule plainRule = (IRule) applicationContext.getBean(targetClz);
+        Rule plainRule = (Rule) applicationContext.getBean(targetClz);
         plainRuleRepository.getPlainRules().put(plainRule.getClass(), plainRule);
     }
 

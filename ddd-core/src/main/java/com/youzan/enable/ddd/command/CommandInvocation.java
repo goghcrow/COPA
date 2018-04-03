@@ -10,18 +10,18 @@ import java.util.List;
 public class CommandInvocation<R extends BaseResult, C extends Command> {
     
     @Setter
-    private ICommandExecutor<R,C> commandExecutor;
+    private CommandExecutor<R,C> commandExecutor;
     @Setter
-    private Iterable<ICommandInterceptor> preInterceptors;
+    private Iterable<CommandInterceptor> preInterceptors;
     @Setter
-    private Iterable<ICommandInterceptor> postInterceptors;
+    private Iterable<CommandInterceptor> postInterceptors;
     
     public CommandInvocation() {
         
     }
     
-    public CommandInvocation(ICommandExecutor<R, C> commandExecutor, List<ICommandInterceptor> preInterceptors,
-                             List<ICommandInterceptor> postInterceptors){
+    public CommandInvocation(CommandExecutor<R, C> commandExecutor, List<CommandInterceptor> preInterceptors,
+                             List<CommandInterceptor> postInterceptors){
         this.commandExecutor = commandExecutor;
         this.preInterceptors = preInterceptors;
         this.postInterceptors = postInterceptors;
@@ -42,13 +42,13 @@ public class CommandInvocation<R extends BaseResult, C extends Command> {
     }
 
     private void postIntercept(C command, R response) {
-        for (ICommandInterceptor postInterceptor : FluentIterable.from(postInterceptors).toSet()) {
+        for (CommandInterceptor postInterceptor : FluentIterable.from(postInterceptors).toSet()) {
             postInterceptor.postIntercept(command, response);
         }
     }
 
     private void preIntercept(C command) {
-        for (ICommandInterceptor preInterceptor : FluentIterable.from(preInterceptors).toSet()) {
+        for (CommandInterceptor preInterceptor : FluentIterable.from(preInterceptors).toSet()) {
             preInterceptor.preIntercept(command);
         }
     }

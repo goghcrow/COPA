@@ -23,16 +23,16 @@ public class CommandHub{
 
     @Getter
     @Setter
-    private ListMultimap<Class/*CommandClz*/, ICommandInterceptor> preInterceptors = LinkedListMultimap.create();
+    private ListMultimap<Class/*CommandClz*/, CommandInterceptor> preInterceptors = LinkedListMultimap.create();
     @Getter
     @Setter
-    private ListMultimap<Class/*CommandClz*/, ICommandInterceptor> postInterceptors = LinkedListMultimap.create();
+    private ListMultimap<Class/*CommandClz*/, CommandInterceptor> postInterceptors = LinkedListMultimap.create();
     @Getter
     @Setter
-    private List<ICommandInterceptor> globalPreInterceptors = new ArrayList<>(); //全局通用的PreInterceptors
+    private List<CommandInterceptor> globalPreInterceptors = new ArrayList<>(); //全局通用的PreInterceptors
     @Getter
     @Setter
-    private List<ICommandInterceptor> globalPostInterceptors = new ArrayList<>(); //全局通用的PostInterceptors
+    private List<CommandInterceptor> globalPostInterceptors = new ArrayList<>(); //全局通用的PostInterceptors
     @Getter
     @Setter
     private Map<Class/*CommandClz*/, CommandInvocation> commandRepository = new HashMap<>();

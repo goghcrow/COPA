@@ -8,7 +8,7 @@ import com.youzan.enable.ddd.dto.Command;
  * 
  * @author fulan.zjf 2017年10月25日 下午4:04:43
  */
-public interface ICommandInterceptor {
+public interface CommandInterceptor {
    
    /**
     * Pre-processing before command execution

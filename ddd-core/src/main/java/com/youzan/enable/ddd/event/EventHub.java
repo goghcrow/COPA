@@ -19,13 +19,13 @@ import java.util.Map;
 public class EventHub {
     @Getter
     @Setter
-    private Map<Class, IEventHandler> eventRepository = new HashMap<>();
+    private Map<Class, EventHandler> eventRepository = new HashMap<>();
     
     @Getter
     private Map<Class, Class> responseRepository = new HashMap<>();
     
-    public IEventHandler getEventHandler(Class eventClass) {
-        IEventHandler eventHandlerI = findHandler(eventClass);
+    public EventHandler getEventHandler(Class eventClass) {
+        EventHandler eventHandlerI = findHandler(eventClass);
         if (eventHandlerI == null) {
             throw new InfraException(eventClass + "is not registered in eventHub, please register first");
         }
@@ -37,11 +37,11 @@ public class EventHub {
      * @param eventClz
      * @param executor
      */
-    public void register(Class<? extends Event> eventClz, IEventHandler executor){
+    public void register(Class<? extends Event> eventClz, EventHandler executor){
         eventRepository.put(eventClz, executor);
     }
 
-    private IEventHandler findHandler(Class<? extends Event> eventClass){
+    private EventHandler findHandler(Class<? extends Event> eventClass){
         return eventRepository.get(eventClass);
     }
 

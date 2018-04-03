@@ -10,9 +10,9 @@ public class CoreConstant {
     public final static String VALIDATOR_NAMING = "Validator";
     public final static String RULE_NAMING = "Rule";
 
-    public final static String EXTENSIONPOINT_CLASS = "IExtensionPoint";
-    public final static String IVALIDATOR_CLASS = "IValidator";
-    public final static String IRULE_CLASS = "IRule";
+    public final static String EXTENSIONPOINT_CLASS = "ExtensionPoint";
+    public final static String VALIDATOR_CLASS = "Validator";
+    public final static String RULE_CLASS = "Rule";
 
     public final static String EXE_METHOD = "execute";
 

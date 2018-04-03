@@ -10,9 +10,9 @@ import java.util.List;
  * 
  * @author fulan.zjf 2017-11-04
  */
-public abstract class ValidatorCompoiste implements IValidator, InitializingBean {
+public abstract class ValidatorCompoiste implements Validator, InitializingBean {
 
-    private List<IValidator> validators;
+    private List<Validator> validators;
     
     /**
      * Composite other validators if necessary
@@ -25,7 +25,7 @@ public abstract class ValidatorCompoiste implements IValidator, InitializingBean
      */
     abstract protected void doValidate(Object candidate);
 
-    protected void add(IValidator validator) {
+    protected void add(Validator validator) {
         if (validators == null) {
             validators = Lists.newArrayList();
         }
@@ -35,7 +35,7 @@ public abstract class ValidatorCompoiste implements IValidator, InitializingBean
     @Override
     public void validate(Object candidate) {
         if (validators != null) {
-            for (IValidator validator : validators) {
+            for (Validator validator : validators) {
                 validator.validate(candidate);
             }
         }

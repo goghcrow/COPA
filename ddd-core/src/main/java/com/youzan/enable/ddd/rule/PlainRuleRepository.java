@@ -14,5 +14,5 @@ import java.util.Map;
 @Component
 public class PlainRuleRepository {
     @Getter
-    private Map<Class<? extends IRule>, IRule> plainRules = new HashMap<>();
+    private Map<Class<? extends Rule>, Rule> plainRules = new HashMap<>();
 }

@@ -6,23 +6,8 @@ package com.youzan.enable.ddd.dto;
  *
  * @author fulan.zjf 2017年10月27日 下午12:28:24
  */
-public abstract class Command extends DTO{
+public abstract class Command extends DTO {
 
     private static final long serialVersionUID = 1L;
-
-    /**
-     * command的操作人
-     */
-	private String operater;
-
-	public String getOperater() {
-		return operater;
-	}
-
-	public void setOperater(String operater) {
-		this.operater = operater;
-	}
-
-
 
 }

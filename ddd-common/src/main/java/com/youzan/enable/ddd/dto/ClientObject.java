@@ -16,7 +16,7 @@ public abstract class ClientObject implements Serializable{
     /**
      * This is for extended values
      */
-    protected Map<String, Object> extValues = new HashMap<String, Object>();
+    protected Map<String, Object> extValues = new HashMap<>();
 
     public Object getExtField(String key){
         if(extValues != null){

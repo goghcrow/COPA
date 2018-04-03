@@ -1,16 +1,16 @@
 package com.youzan.enable.ddd.event;
 
-import org.springframework.stereotype.Component;
-
-import java.lang.annotation.*;
+import com.youzan.api.common.response.BaseResult;
+import com.youzan.enable.ddd.dto.event.Event;
 
 /**
+ * event handler
+ *
  * @author shawnzhan.zxy
  * @date 2017/11/20
  */
-@Inherited
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE})
-@Component
-public @interface EventHandler {
+public interface EventHandler<R extends BaseResult, E extends Event> {
+
+    R execute(E e);
+
 }

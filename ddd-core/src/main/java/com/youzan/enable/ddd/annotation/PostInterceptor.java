@@ -1,4 +1,4 @@
-package com.youzan.enable.ddd.command;
+package com.youzan.enable.ddd.annotation;
 
 import com.youzan.enable.ddd.dto.Command;
 import org.springframework.stereotype.Component;
@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 @Component
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface PreInterceptor {
+public @interface PostInterceptor {
 
     Class<? extends Command>[] commands() default {};
 

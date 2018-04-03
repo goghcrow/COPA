@@ -1,11 +1,11 @@
 package com.youzan.enable.ddd.boot.register;
 
-import com.youzan.enable.ddd.boot.IRegister;
+import com.youzan.enable.ddd.boot.Register;
 import com.youzan.enable.ddd.common.CoreConstant;
 import com.youzan.enable.ddd.exception.InfraException;
-import com.youzan.enable.ddd.extension.Extension;
+import com.youzan.enable.ddd.annotation.Extension;
 import com.youzan.enable.ddd.extension.ExtensionRepository;
-import com.youzan.enable.ddd.extension.IExtensionPoint;
+import com.youzan.enable.ddd.extension.ExtensionPoint;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeansException;
@@ -20,7 +20,7 @@ import javax.annotation.Resource;
  * @author fulan.zjf 2017-11-05
  */
 @Component
-public class ExtensionRegister implements IRegister, ApplicationContextAware {
+public class ExtensionRegister implements Register, ApplicationContextAware {
 
     @Resource
     private ExtensionRepository extensionRepository;
@@ -29,7 +29,7 @@ public class ExtensionRegister implements IRegister, ApplicationContextAware {
     
     @Override
     public void doRegistration(Class<?> targetClz) {
-        IExtensionPoint extension = (IExtensionPoint) applicationContext.getBean(targetClz);
+        ExtensionPoint extension = (ExtensionPoint) applicationContext.getBean(targetClz);
         Extension extensionAnn = targetClz.getDeclaredAnnotation(Extension.class);
 
         String extensionPoint = calculateExtensionPoint(targetClz);

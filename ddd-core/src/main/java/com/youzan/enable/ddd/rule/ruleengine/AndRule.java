@@ -1,6 +1,6 @@
 package com.youzan.enable.ddd.rule.ruleengine;
 
-import com.youzan.enable.ddd.rule.IRule;
+import com.youzan.enable.ddd.rule.Rule;
 
 /**
  * 组合And的业务规则
@@ -8,10 +8,10 @@ import com.youzan.enable.ddd.rule.IRule;
  *
  */
 public class AndRule extends AbstractRule {
-	IRule one;
-	IRule other;
+	Rule one;
+	Rule other;
 
-	public AndRule(IRule x, IRule y){
+	public AndRule(Rule x, Rule y){
 		one = x;
 		other = y;
 	}

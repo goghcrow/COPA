@@ -1,9 +1,9 @@
 package com.youzan.enable.ddd.boot.register;
 
-import com.youzan.enable.ddd.boot.IRegister;
+import com.youzan.enable.ddd.boot.Register;
 import com.youzan.enable.ddd.command.CommandHub;
-import com.youzan.enable.ddd.command.ICommandInterceptor;
-import com.youzan.enable.ddd.command.PostInterceptor;
+import com.youzan.enable.ddd.command.CommandInterceptor;
+import com.youzan.enable.ddd.annotation.PostInterceptor;
 import com.youzan.enable.ddd.dto.Command;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -17,7 +17,7 @@ import javax.annotation.Resource;
  * @author fulan.zjf 2017-11-04
  */
 @Component
-public class PostInterceptorRegister implements IRegister, ApplicationContextAware{
+public class PostInterceptorRegister implements Register, ApplicationContextAware{
 
     @Resource
     private CommandHub commandHub;
@@ -26,13 +26,13 @@ public class PostInterceptorRegister implements IRegister, ApplicationContextAwa
     
     @Override
     public void doRegistration(Class<?> targetClz) {
-        ICommandInterceptor commandInterceptor = (ICommandInterceptor) applicationContext.getBean(targetClz);
+        CommandInterceptor commandInterceptor = (CommandInterceptor) applicationContext.getBean(targetClz);
         PostInterceptor postInterceptorAnn = targetClz.getDeclaredAnnotation(PostInterceptor.class);
         Class<? extends Command>[] supportClasses = postInterceptorAnn.commands();
         registerInterceptor(supportClasses, commandInterceptor);        
     }
 
-    private void registerInterceptor(Class<? extends Command>[] supportClasses, ICommandInterceptor commandInterceptor) {
+    private void registerInterceptor(Class<? extends Command>[] supportClasses, CommandInterceptor commandInterceptor) {
         if (null == supportClasses || supportClasses.length == 0) {
             commandHub.getGlobalPostInterceptors().add(commandInterceptor);
             return;

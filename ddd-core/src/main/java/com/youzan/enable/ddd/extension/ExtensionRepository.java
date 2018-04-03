@@ -26,7 +26,7 @@ public class ExtensionRepository {
     @EqualsAndHashCode
     public static class ExtPtEntry implements Comparable<ExtPtEntry> {
         private Class<?> targetClz;
-        private IExtensionPoint extensionPoint;
+        private ExtensionPoint extensionPoint;
         private int order;
 
         @Override
