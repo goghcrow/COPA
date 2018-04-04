@@ -12,9 +12,13 @@ api/app/domain/infrastructure 只是逻辑上的名称，对应到具体项目�
 
 
 > App层主要负责获取输入，组装context，做输入校验，发送消息给领域层做业务处理，监听确认消息，如果需要的话使用MQ进行消息通知；
+
 <br>
+
 > Domain层主要是通过领域服务（Domain Service），领域对象（Domain Object）的交互，对上层提供业务逻辑的处理，然后调用下层Repository做持久化处理；
+
 <br>
+
 > Infrastructure层主要包含Repository，Config和Common，Repository负责数据的CRUD操作，隔离数据源；Config负责应用的配置；Common是一写工具类；负责message通信的也应该放在这一层。
 
 
