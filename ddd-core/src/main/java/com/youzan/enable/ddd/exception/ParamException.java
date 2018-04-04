@@ -1,5 +1,7 @@
 package com.youzan.enable.ddd.exception;
 
+import com.youzan.api.common.enums.IErrorCode;
+
 public class ParamException extends CrmException{
     
     private static final long serialVersionUID = 1L;
@@ -9,7 +11,7 @@ public class ParamException extends CrmException{
         this.setErrCode(BasicErrorCode.PARAM_ERROR);
     }
 
-    public ParamException(ErrorCode errCode, String errMessage){
+    public ParamException(IErrorCode errCode, String errMessage){
         super(errMessage);
         this.setErrCode(errCode);
     }

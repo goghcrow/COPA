@@ -1,5 +1,7 @@
 package com.youzan.enable.ddd.exception;
 
+import com.youzan.api.common.enums.IErrorCode;
+
 public class BizException extends CrmException{
 
     private static final long serialVersionUID = 1L;
@@ -9,7 +11,7 @@ public class BizException extends CrmException{
         this.setErrCode(BasicErrorCode.BIZ_ERROR);
     }
 
-    public BizException(ErrorCode errCode, String errMessage){
+    public BizException(IErrorCode errCode, String errMessage){
     	super(errMessage);
     	this.setErrCode(errCode);
     }

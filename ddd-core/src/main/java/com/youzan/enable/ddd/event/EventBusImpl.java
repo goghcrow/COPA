@@ -1,10 +1,10 @@
 package com.youzan.enable.ddd.event;
 
+import com.youzan.api.common.enums.IErrorCode;
 import com.youzan.api.common.response.BaseResult;
 import com.youzan.enable.ddd.dto.event.Event;
 import com.youzan.enable.ddd.exception.BasicErrorCode;
 import com.youzan.enable.ddd.exception.CrmException;
-import com.youzan.enable.ddd.exception.ErrorCode;
 import com.youzan.enable.ddd.exception.InfraException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -48,11 +48,11 @@ public class EventBusImpl implements EventBus {
         }
         baseResult.setSuccess(false);
         if (exception instanceof CrmException) {
-            ErrorCode errCode = ((CrmException) exception).getErrCode();
-            baseResult.setCode(errCode.getErrCode());
+            IErrorCode errCode = ((CrmException) exception).getErrCode();
+            baseResult.setCode(errCode.getCode());
         }
         else {
-            baseResult.setCode(BasicErrorCode.SYS_ERROR.getErrCode());
+            baseResult.setCode(BasicErrorCode.SYS_ERROR.getCode());
         }
         baseResult.setMessage(exception.getMessage());
         log.error(exception.getMessage(), exception);

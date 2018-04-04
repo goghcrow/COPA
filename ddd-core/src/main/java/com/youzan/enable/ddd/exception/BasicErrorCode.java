@@ -1,7 +1,7 @@
 package com.youzan.enable.ddd.exception;
 
 /**
- * fixme common-base 错误码
+ *
  * 参数错误：1000 - 1999
  * 业务错误：2000 - 2999
  * 基础错误：3000 - 3999
@@ -19,19 +19,19 @@ public enum BasicErrorCode implements ErrorCode {
     private String errDesc;
     private boolean retriable;
 
-    private BasicErrorCode(int errCode, String errDesc, boolean retriable){
+    BasicErrorCode(int errCode, String errDesc, boolean retriable){
         this.errCode = errCode;
         this.errDesc = errDesc;
         this.retriable = retriable;
     }
 
     @Override
-    public int getErrCode() {
+    public int getCode() {
         return errCode;
     }
 
     @Override
-    public String getErrDesc() {
+    public String getMessage() {
         return errDesc;
     }
 

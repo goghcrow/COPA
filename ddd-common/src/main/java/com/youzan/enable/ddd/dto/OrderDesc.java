@@ -1,5 +1,8 @@
 package com.youzan.enable.ddd.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Order Description
  *
@@ -7,22 +10,12 @@ package com.youzan.enable.ddd.dto;
  */
 public class OrderDesc {
 
+    @Getter
+    @Setter
     private String col;
+
+    @Getter
+    @Setter
     private boolean asc = true;
 
-    public String getCol() {
-        return col;
-    }
-
-    public void setCol(String col) {
-        this.col = col;
-    }
-
-    public boolean isAsc() {
-        return asc;
-    }
-
-    public void setAsc(boolean asc) {
-        this.asc = asc;
-    }
 }

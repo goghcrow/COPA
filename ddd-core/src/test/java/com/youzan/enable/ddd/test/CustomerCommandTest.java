@@ -80,7 +80,7 @@ public class CustomerCommandTest {
 
         //3. Expect exception
         Assert.assertFalse(response.isSuccess());
-        Assert.assertEquals(response.getCode(), BasicErrorCode.BIZ_ERROR.getErrCode());
+        Assert.assertEquals(response.getCode(), BasicErrorCode.BIZ_ERROR.getCode());
     }
 
     @Test
@@ -115,7 +115,7 @@ public class CustomerCommandTest {
 
         //Expect biz exception
         Assert.assertFalse(response.isSuccess());
-        Assert.assertEquals(response.getCode(), BasicErrorCode.BIZ_ERROR.getErrCode());
+        Assert.assertEquals(response.getCode(), BasicErrorCode.BIZ_ERROR.getCode());
     }
 
     @Test
@@ -125,6 +125,6 @@ public class CustomerCommandTest {
 
         //Expect parameter validation error
         Assert.assertFalse(response.isSuccess());
-        Assert.assertEquals(response.getCode(), BasicErrorCode.PARAM_ERROR.getErrCode());
+        Assert.assertEquals(response.getCode(), BasicErrorCode.PARAM_ERROR.getCode());
     }
 }

@@ -4,6 +4,7 @@ package com.youzan.enable.ddd.validator;
  * Validator Interface
  * @author fulan.zjf 2017-11-04
  */
+@FunctionalInterface
 public interface Validator {
     
     /**

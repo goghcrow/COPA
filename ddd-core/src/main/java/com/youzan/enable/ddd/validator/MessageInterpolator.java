@@ -12,8 +12,7 @@ public class MessageInterpolator extends ResourceBundleMessageInterpolator{
 
     @Override
     public String interpolate(String message, Context context) {
-        //Use English Locale
-        String resolvedMessage = super.interpolate(message, context, Locale.ENGLISH);
+        String resolvedMessage = super.interpolate(message, context, Locale.SIMPLIFIED_CHINESE);
         return resolvedMessage;
     }
 }

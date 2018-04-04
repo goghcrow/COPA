@@ -18,6 +18,7 @@ public class RuleExecutor extends ExtensionExecutor {
     @Resource
     private PlainRuleRepository plainRuleRepository;
 
+    @SuppressWarnings("unchecked")
     @Override
     protected <C> C locateComponent(Class<C> targetClz) {
         C rule = (C) plainRuleRepository.getPlainRules().get(targetClz);

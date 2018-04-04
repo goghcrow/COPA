@@ -1,5 +1,8 @@
 package com.youzan.enable.ddd.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,38 +13,22 @@ import java.util.List;
  */
 public abstract class PageQuery extends Query {
 
+    @Getter
+    @Setter
     private int pageNum;
+
+    @Getter
+    @Setter
     private int pageSize;
+
+    @Getter
+    @Setter
     private boolean needTotalCount = true;
+
+    @Getter
+    @Setter
     private List<OrderDesc> orderDescs;
 
-    public int getPageNum() {
-        return pageNum;
-    }
-
-    public void setPageNum(int pageNum) {
-        this.pageNum = pageNum;
-    }
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    public boolean isNeedTotalCount() {
-        return needTotalCount;
-    }
-
-    public void setNeedTotalCount(boolean needTotalCount) {
-        this.needTotalCount = needTotalCount;
-    }
-
-    public List<OrderDesc> getOrderDescs() {
-        return orderDescs;
-    }
 
     public void addOrderDesc(OrderDesc orderDesc) {
         if (null == orderDescs) {

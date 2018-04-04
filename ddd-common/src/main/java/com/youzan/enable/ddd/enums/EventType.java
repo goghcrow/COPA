@@ -1,12 +1,12 @@
 package com.youzan.enable.ddd.enums;
 
+
 /**
- * @author shawnzhan.zxy
- * @date 2017/11/21
+ * @author chuxiaofeng
  */
 public enum EventType {
-    CREATE,
-    UPDATE,
-    DELETE
+    CREATED,
+    UPDATED,
+    DELETED
     ;
 }

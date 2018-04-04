@@ -1,5 +1,7 @@
 package com.youzan.enable.ddd.exception;
 
+import com.youzan.api.common.enums.IErrorCode;
+
 /**
  * 
  * CRM Exception
@@ -10,7 +12,7 @@ public abstract class CrmException extends RuntimeException{
 
     private static final long serialVersionUID = 1L;
     
-    private ErrorCode errCode;
+    private IErrorCode errCode;
     
     public CrmException(String errMessage){
         super(errMessage);
@@ -20,11 +22,11 @@ public abstract class CrmException extends RuntimeException{
         super(errMessage, e);
     }
     
-    public ErrorCode getErrCode() {
+    public IErrorCode getErrCode() {
         return errCode;
     }
     
-    public void setErrCode(ErrorCode errCode) {
+    public void setErrCode(IErrorCode errCode) {
         this.errCode = errCode;
     }
     

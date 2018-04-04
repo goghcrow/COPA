@@ -4,8 +4,7 @@ import com.youzan.api.common.response.BaseResult;
 
 /**
  * Nsq消息消费扩展点
- * @author xueliang.sxl
- *
+ * @author chuxiaofeng
  */
 public interface NsqEventConsumerExtPt {
 
