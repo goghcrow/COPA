@@ -9,8 +9,8 @@ import com.youzan.enable.ddd.dto.event.Event;
  * @author shawnzhan.zxy
  * @date 2017/11/20
  */
-public interface EventHandler<R extends BaseResult, E extends Event> {
+public interface EventHandler<Ret extends BaseResult, Evt extends Event> {
 
-    R execute(E e);
+    Ret execute(Evt e);
 
 }

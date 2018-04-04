@@ -28,7 +28,7 @@ public class EventBusImpl implements EventBus {
     @SuppressWarnings("unchecked")
     @Override
     public BaseResult fire(Event event) {
-        BaseResult baseResult = null;
+        BaseResult baseResult;
         try {
             baseResult = eventHub.getEventHandler(event.getClass()).execute(event);
         }catch (Exception exception) {
