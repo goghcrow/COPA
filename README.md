@@ -267,10 +267,6 @@ public class CustomerUpdateBizARuleExt implements CustomerUpdateRuleExtPt {
 ```
 
 
-### 图片示例
-
-![](http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/8b7d2e54d3f243d3efefd3e798d4123a.png)
-
 
 4. 使用方式
 
