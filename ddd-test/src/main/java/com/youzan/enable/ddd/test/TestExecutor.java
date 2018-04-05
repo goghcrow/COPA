@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 import javax.annotation.Resource;
@@ -124,8 +125,9 @@ public class TestExecutor {
        }
        for(Field field : fields) {
            String beanName = field.getName();
-           Annotation autowiredAnn = field.getDeclaredAnnotation(Resource.class);
-           if (autowiredAnn == null) {
+           Annotation autowiredAnn = field.getDeclaredAnnotation(Autowired.class);
+           Annotation resourceAnn = field.getDeclaredAnnotation(Resource.class);
+           if (autowiredAnn == null && resourceAnn == null) {
                //System.out.println("Field "+beanName+" is not autowired, just ignore it");
                return;
            }

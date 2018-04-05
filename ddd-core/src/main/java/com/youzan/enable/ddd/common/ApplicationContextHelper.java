@@ -26,4 +26,8 @@ public class ApplicationContextHelper implements ApplicationContextAware{
     public static Object getBean(Class claz){
         return ApplicationContextHelper.applicationContext.getBean(claz);
     }
+
+    public static ApplicationContext getApplicationContext() {
+        return applicationContext;
+    }
 }
