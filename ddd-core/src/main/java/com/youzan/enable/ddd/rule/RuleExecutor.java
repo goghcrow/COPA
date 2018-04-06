@@ -1,6 +1,7 @@
 package com.youzan.enable.ddd.rule;
 
 import com.youzan.enable.ddd.extension.ExtensionExecutor;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -18,15 +19,18 @@ public class RuleExecutor extends ExtensionExecutor {
     @Resource
     private PlainRuleRepository plainRuleRepository;
 
-    @SuppressWarnings("unchecked")
-    @Override
-    protected <C> C locateComponent(Class<C> targetClz) {
-        C rule = (C) plainRuleRepository.getPlainRules().get(targetClz);
-        return rule != null ? rule : super.locateComponent(targetClz);
-    }
-
     public void validate(Class<? extends Rule> targetClz, Object... candidate) {
         Rule rule = this.locateComponent(targetClz);
         rule.validate(candidate);
     }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    protected <Com> Com locateComponent(@NotNull Class<Com> targetClz) {
+        // semantically
+        assert targetClz.isInterface();
+        Com rule = (Com) plainRuleRepository.getPlainRules().get(targetClz);
+        return rule != null ? rule : super.locateComponent(targetClz);
+    }
+
 }

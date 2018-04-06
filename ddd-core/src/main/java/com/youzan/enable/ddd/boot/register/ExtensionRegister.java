@@ -30,41 +30,11 @@ public class ExtensionRegister implements Register, ApplicationContextAware {
     @Override
     public void doRegistration(Class<?> targetClz) {
         ExtensionPoint extension = (ExtensionPoint) applicationContext.getBean(targetClz);
-        Extension extensionAnn = targetClz.getDeclaredAnnotation(Extension.class);
-
-        String extensionPoint = calculateExtensionPoint(targetClz);
-
-        ExtensionRepository.ExtPtEntry extPtrEntry =
-                new ExtensionRepository.ExtPtEntry(targetClz, extension, extensionAnn.order());
-        boolean newAdded = extensionRepository.addExtensionPoint(extensionPoint, extPtrEntry);
+        boolean newAdded = extensionRepository.addExtensionPoint(targetClz, extension);
         if (!newAdded) {
-            throw new InfraException("Duplicate registration is not allowed for :" + extensionPoint);
+            throw new InfraException("Duplicate registration is not allowed for :" + targetClz.getName());
         }
     }
-
-
-    /**
-     * 注意这里逻辑, 寻找扩展点接口名称
-     * @param targetClz
-     * @return
-     */
-    private String calculateExtensionPoint(Class<?> targetClz) {
-        Class[] interfaces = targetClz.getInterfaces();
-        if (ArrayUtils.isEmpty(interfaces)) {
-            throw new InfraException("Please assign a extension point interface for " + targetClz);
-        }
-        for (Class intf : interfaces) {
-            String extensionPoint = intf.getSimpleName();
-            if (StringUtils.contains(extensionPoint, CoreConstant.EXTENSION_EXTPT_NAMING)) {
-                return extensionPoint;
-            }
-        }
-
-        throw new InfraException("Your name of ExtensionPoint for " + targetClz +
-                " is not valid, must be end of " + CoreConstant.EXTENSION_EXTPT_NAMING);
-    }
-
-
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {

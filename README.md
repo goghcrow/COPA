@@ -181,10 +181,10 @@ public class CustomerUpdateBizARuleExt implements CustomerUpdateRuleExtPt {
 
 通过调整 extension 的 order，
 
-当前用户身份为 {bizCode = "BIZ_B", tenantId = 1} 会匹配到扩展点3，
-当前用户身份为 {bizCode = "BIZ_B", tenantId = 2} 会匹配到扩展点2，
 当前用户身份为 {bizCode = "BIZ_A", tenantId = 1} 会匹配到扩展点1，
 当前用户身份为 {bizCode = "BIZ_A", tenantId = 2} 会匹配到扩展点1，
+当前用户身份为 {bizCode = "BIZ_B", tenantId = 1} 会匹配到扩展点3，
+当前用户身份为 {bizCode = "BIZ_B", tenantId = 2} 会匹配到扩展点2，
 当前用户身份为 {bizCode = "BIZ_C", tenantId = 1} 会匹配到扩展点4，
 当前用户身份为 {bizCode = "BIZ_C", tenantId = 2} 会匹配到扩展点4
 

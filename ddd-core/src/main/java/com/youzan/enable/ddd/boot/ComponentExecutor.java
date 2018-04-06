@@ -1,5 +1,7 @@
 package com.youzan.enable.ddd.boot;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.function.Function;
 
 /**
@@ -8,11 +10,11 @@ import java.util.function.Function;
  */
 public abstract class ComponentExecutor {
 
-    public <R, C> R execute(Class<C> targetClz, Function<C, R> exeFunction) {
-        C component = locateComponent(targetClz);
+    public <Ret, Com> Ret execute(@NotNull Class<Com> targetClz, @NotNull Function<Com, Ret> exeFunction) {
+        Com component = locateComponent(targetClz);
         return exeFunction.apply(component);
     }
 
-    protected abstract <C> C locateComponent(Class<C> targetClz);
+    protected abstract <Com> Com locateComponent(@NotNull Class<Com> targetClz);
 
 }

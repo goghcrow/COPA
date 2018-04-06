@@ -2,6 +2,7 @@ package com.youzan.enable.ddd.extension;
 
 import com.youzan.enable.ddd.boot.ComponentExecutor;
 import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -18,17 +19,15 @@ public class ExtensionExecutor extends ComponentExecutor {
     private ExtensionRepository extensionRepository;
 
     @Override
-    protected <C> C locateComponent(Class<C> targetClz) {
-        C extension = locateExtension(targetClz);
-        log.debug("[Located Extension]: "+extension.getClass().getSimpleName());
+    protected <Com> Com locateComponent(@NotNull Class<Com> targetClz) {
+        // semantically
+        assert targetClz.isInterface();
+        Com extension = locateExtension(targetClz);
+        log.debug("[Located Extension]: " + extension.getClass().getName());
         return extension;
     }
 
-    /**
-     * @param targetClz
-     */
     protected <Ext> Ext locateExtension(Class<Ext> targetClz) {
-        String extPtName = targetClz.getSimpleName();
-        return extensionRepository.getExtensionPoint(extPtName);
+        return extensionRepository.getExtensionPoint(targetClz);
     }
 }

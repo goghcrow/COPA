@@ -18,9 +18,9 @@ public class CoreConstant {
     public final static String RULE_NAMING = "Rule";
     
     
-    public final static String EXTENSIONPOINT_CLASS = "ExtensionPoint"; // ExtensionPoint.class.getSimpleName()
-    public final static String VALIDATOR_CLASS = "Validator"; // Validator.class.getSimpleName()
-    public final static String RULE_CLASS = "Rule"; // Rule.class.getSimpleName()
+    public final static String EXTENSIONPOINT_CLASS = "ExtensionPoint";
+    public final static String VALIDATOR_CLASS = "Validator";
+    public final static String RULE_CLASS = "Rule";
 
     public final static String EXE_METHOD = "execute";
 

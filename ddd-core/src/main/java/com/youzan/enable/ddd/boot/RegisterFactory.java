@@ -82,7 +82,7 @@ public class RegisterFactory{
     private boolean makeSureItsNotExtensionPoint(Class<?> targetClz) {
         if (ClassInterfaceChecker.check(targetClz, CoreConstant.EXTENSIONPOINT_CLASS)) {
             throw new InfraException(
-                "Please add @Extension for " + targetClz.getSimpleName() + " since it's a ExtensionPoint");
+                "Please add @Extension for " + targetClz.getName() + " since it's a ExtensionPoint");
         }
         return true;
     }

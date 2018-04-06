@@ -35,7 +35,8 @@ public class CommandBusImpl implements CommandBus {
             baseResult = handleException(cmd, exception);
         }
         finally {
-            Context.remove();//Clean up context
+            //Clean up context
+            Context.remove();
         }
         return baseResult;
     }

@@ -57,6 +57,8 @@ public class Bootstrap {
 
         String[] pkgs = new String[packages.size()];
         ClassPathScanHandler handler = new ClassPathScanHandler(packages.toArray(pkgs));
+        // 加入内部类支持
+        handler.setExcludeInner(false);
 
         Set<Class<?>> classSet = new TreeSet<>(new ClassNameComparator());
         for (String pakName : packages) {

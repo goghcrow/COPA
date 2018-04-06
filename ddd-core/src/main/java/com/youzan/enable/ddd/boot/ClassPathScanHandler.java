@@ -33,24 +33,28 @@ public class ClassPathScanHandler {
      * class file extension name.
      */
     private static final String CLASS_EXTENSION_NAME = ".class";
+
     /**
      * 是否排除内部类 true->是 false->否.
      */
     @Getter
     @Setter
     private boolean excludeInner = true;
+
     /**
      * 过滤规则适用情况 true—>搜索符合规则的 false->排除符合规则的.
      */
     @Getter
     @Setter
     private boolean checkInOrEx = true;
+
     /**
      * 过滤规则列表 如果是null或者空，即全部符合不过滤.
      */
     @Getter
     @Setter
     private List<String> classFilters = null;
+
     /**
      * the reflections.
      */
@@ -120,7 +124,7 @@ public class ClassPathScanHandler {
         if (basePackage == null) {
             return new HashSet<>();
         }
-        Set<Class<?>> classes = new LinkedHashSet<Class<?>>();
+        Set<Class<?>> classes = new LinkedHashSet<>();
         String packageName = basePackage;
         if (packageName.endsWith(".")) {
             packageName = packageName.substring(0, packageName.lastIndexOf('.'));

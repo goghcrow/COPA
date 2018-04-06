@@ -15,29 +15,24 @@ public class Context {
      */
     // ThreadLocal<Stack<Map<String, Object>>>
 
-    private static ThreadLocal<Map<String, Object>> context = new ThreadLocal<>();
+    private static ThreadLocal<Map<String, Object>> context = ThreadLocal.withInitial(HashMap::new);
 
-    public static Map<String, Object> get() {
+    public static Map<String, Object> getAll() {
         return context.get();
     }
 
     @SuppressWarnings("unchecked")
     public static <T> T get(@NotNull String key) {
-        if (context.get() == null) {
-            return null;
-        }
         return (T) context.get().get(key);
     }
 
     public static void set(@NotNull String key, Object value) {
-        if (context.get() == null) {
-            context.set(new HashMap<>());
-        }
         context.get().put(key, value);
     }
 
     public static void remove() {
-        context.remove();
+        // context.remove();
+        context.get().clear();
     }
 
 }

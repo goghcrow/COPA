@@ -25,7 +25,7 @@ public class TestExecutor {
     private String className;
     private String methodName;
     
-    private Map<String, Object> testInstanceCache = new HashMap<String, Object>();
+    private Map<String, Object> testInstanceCache = new HashMap<>();
     
     private ApplicationContext context;
 
