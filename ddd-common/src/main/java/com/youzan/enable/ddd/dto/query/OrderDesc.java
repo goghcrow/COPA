@@ -1,4 +1,4 @@
-package com.youzan.enable.ddd.dto;
+package com.youzan.enable.ddd.dto.query;
 
 import lombok.Getter;
 import lombok.Setter;

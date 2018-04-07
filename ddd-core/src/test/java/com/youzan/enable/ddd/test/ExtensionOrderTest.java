@@ -19,6 +19,7 @@ import java.util.Objects;
 
 import static org.junit.Assert.assertEquals;
 
+@SuppressWarnings("Convert2MethodRef")
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {TestConfig.class})
 public class ExtensionOrderTest {

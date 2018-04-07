@@ -1,6 +1,6 @@
 package com.youzan.enable.ddd.test.customer;
 
-import com.youzan.enable.ddd.dto.Query;
+import com.youzan.enable.ddd.dto.query.Query;
 import lombok.Data;
 
 /**

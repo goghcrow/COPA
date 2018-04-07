@@ -1,4 +1,6 @@
-package com.youzan.enable.ddd.dto;
+package com.youzan.enable.ddd.dto.query;
+
+import com.youzan.enable.ddd.dto.Command;
 
 /**
  * 
