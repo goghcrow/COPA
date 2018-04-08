@@ -27,7 +27,7 @@ public class CommandBusImpl implements CommandBus {
     @SuppressWarnings("unchecked")
     @Override
     public BaseResult send(com.youzan.enable.ddd.dto.Command cmd) {
-        BaseResult baseResult = null;
+        BaseResult baseResult;
         try {
             baseResult = commandHub.getCommandInvocation(cmd.getClass()).invoke(cmd);
         }
