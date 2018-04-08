@@ -24,7 +24,7 @@ public abstract class Entity<ID>  {
 	protected Date updatedAt;
 
 	@Getter @Setter
-	protected String deletedAt;
+	protected Date deletedAt;
 
 	/**
 	 * 扩展字段
