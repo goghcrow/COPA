@@ -25,5 +25,6 @@ public interface CustomerRuleExtPt extends Rule, ExtensionPoint {
      * @param candidate
      * @return
      */
+    @Override
     default boolean check(Object candidate) { return true; }
 }
