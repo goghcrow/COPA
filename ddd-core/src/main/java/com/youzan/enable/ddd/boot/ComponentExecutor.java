@@ -10,6 +10,9 @@ import java.util.function.Function;
  */
 public abstract class ComponentExecutor {
 
+    /**
+     * 执行自定义 组件(e.g. extensionPoint) 声明方法
+     */
     public <Ret, Com> Ret execute(@NotNull Class<Com> targetClz, @NotNull Function<Com, Ret> exeFunction) {
         Com component = locateComponent(targetClz);
         return exeFunction.apply(component);

@@ -19,4 +19,11 @@ public interface CustomerRuleExtPt extends Rule, ExtensionPoint {
     default void customerUpgradePolicy(CustomerEntity customerEntity){
         //Nothing special
     }
+
+    /**
+     * 子类不使用 Rule 默认 match 方法
+     * @param candidate
+     * @return
+     */
+    default boolean check(Object candidate) { return true; }
 }

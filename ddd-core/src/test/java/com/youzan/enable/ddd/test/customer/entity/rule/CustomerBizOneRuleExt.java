@@ -14,7 +14,7 @@ import com.youzan.enable.ddd.test.customer.entity.SourceType;
  * @date 2018-01-07 12:10 PM
  */
 @Extension
-public class CustomerBizOneRuleExt implements CustomerRuleExtPt{
+public class CustomerBizOneRuleExt implements CustomerRuleExtPt {
 
     @Override
     public boolean addCustomerCheck(CustomerEntity customerEntity) {

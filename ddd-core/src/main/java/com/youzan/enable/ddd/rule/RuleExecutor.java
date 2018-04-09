@@ -19,6 +19,11 @@ public class RuleExecutor extends ExtensionExecutor {
     @Resource
     private PlainRuleRepository plainRuleRepository;
 
+    public void check(Class<? extends Rule> targetClz, Object candidate) {
+        Rule rule = this.locateComponent(targetClz);
+        rule.check(candidate);
+    }
+
     public void validate(Class<? extends Rule> targetClz, Object... candidate) {
         Rule rule = this.locateComponent(targetClz);
         rule.validate(candidate);
