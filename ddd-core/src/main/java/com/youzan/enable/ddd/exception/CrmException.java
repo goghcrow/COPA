@@ -8,11 +8,11 @@ import com.youzan.api.common.enums.IErrorCode;
  * 
  * @author fulan.zjf 2017年10月22日 上午12:00:39
  */
-public abstract class CrmException extends RuntimeException{
+public abstract class CrmException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
     
-    private IErrorCode errCode;
+    protected IErrorCode errCode = BasicErrorCode.SYS_ERROR;
     
     public CrmException(String errMessage){
         super(errMessage);

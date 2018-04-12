@@ -50,8 +50,7 @@ public class EventBusImpl implements EventBus {
         if (exception instanceof CrmException) {
             IErrorCode errCode = ((CrmException) exception).getErrCode();
             baseResult.setCode(errCode.getCode());
-        }
-        else {
+        } else {
             baseResult.setCode(BasicErrorCode.SYS_ERROR.getCode());
         }
         baseResult.setMessage(exception.getMessage());
