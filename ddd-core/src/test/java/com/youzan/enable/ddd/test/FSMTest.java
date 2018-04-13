@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-@RunWith(JUnit4.class)
+//@RunWith(JUnit4.class)
 public class FSMTest {
 
     // @Test
