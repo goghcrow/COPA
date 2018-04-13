@@ -23,7 +23,7 @@ public class CustomerBizOneConvertorExt  implements CustomerConvertorExtPt{
 
     @Override
     public CustomerEntity clientToEntity(CustomerCO customerCO){
-        CustomerEntity customerEntity = customerConvertor.clientToEntity(customerCO);
+        CustomerEntity customerEntity = customerConvertor.dtoToEntity(customerCO);
         //In this business, AD and RFQ are regarded as different source
         if(Constants.SOURCE_AD.equals(customerCO.getSource()))
         {

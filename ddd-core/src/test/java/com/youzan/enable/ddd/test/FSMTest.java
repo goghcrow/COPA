@@ -1,9 +1,6 @@
 package com.youzan.enable.ddd.test;
 
-import com.youzan.enable.ddd.fsm.FSMEvent;
-import com.youzan.enable.ddd.fsm.FSM;
-import com.youzan.enable.ddd.fsm.FSMState;
-import com.youzan.enable.ddd.fsm.FSMTransition;
+import com.youzan.enable.ddd.fsm.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -93,11 +90,19 @@ public class FSMTest {
         states.add(solved);
         states.add(closed);
 
+
+        FSMEventHandler defEvtHandler = evt -> {
+            // 1. 是否可转移检测，不满足条件抛异常
+
+            // 2. 逻辑
+            System.out.println("transition :" + evt);
+        };
+
         FSMTransition createdToOpen = FSMTransition.builder()
                 .name("createdToOpen")
                 .from(created)
                 .to(open)
-                .on(CreatedToOpenEvt.class)
+                .on(CreatedToOpenEvt.class, defEvtHandler)
                 .build();
 
 
@@ -106,26 +111,26 @@ public class FSMTest {
                 .name("pendingToSolved")
                 .from(closed)
                 .to(pending)
-                .on(ClosedToPendingEvt.class)
+                .on(ClosedToPendingEvt.class, defEvtHandler)
                 .build();
 
         FSMTransition openToSolved = FSMTransition.builder()
                 .name("openToSolved")
                 .from(open)
                 .to(solved)
-                .on(OpenToSolvedEvt.class)
+                .on(OpenToSolvedEvt.class, defEvtHandler)
                 .build();
         FSMTransition openToClosed = FSMTransition.builder()
                 .name("openToClosed")
                 .from(open)
                 .to(closed)
-                .on(OpenToClosedEvt.class)
+                .on(OpenToClosedEvt.class, defEvtHandler)
                 .build();
         FSMTransition openToPending = FSMTransition.builder()
                 .name("openToPending")
                 .from(open)
                 .to(pending)
-                .on(OpenToPendingEvt.class)
+                .on(OpenToPendingEvt.class, defEvtHandler)
                 .build();
 
 
@@ -134,19 +139,19 @@ public class FSMTest {
                 .name("pendingToOpen")
                 .from(pending)
                 .to(open)
-                .on(PendingToOpenEvt.class)
+                .on(PendingToOpenEvt.class, defEvtHandler)
                 .build();
         FSMTransition pendingToSolved = FSMTransition.builder()
                 .name("pendingToSolved")
                 .from(pending)
                 .to(solved)
-                .on(PendingToSolvedEvt.class)
+                .on(PendingToSolvedEvt.class, defEvtHandler)
                 .build();
         FSMTransition pendingToClosed = FSMTransition.builder()
                 .name("pendingToClosed")
                 .from(pending)
                 .to(closed)
-                .on(PendingToClosedEvt.class)
+                .on(PendingToClosedEvt.class, defEvtHandler)
                 .build();
 
 
@@ -155,20 +160,21 @@ public class FSMTest {
                 .name("solvedToOpen")
                 .from(solved)
                 .to(open)
-                .on(SolvedToOpenEvt.class)
+                .on(SolvedToOpenEvt.class, defEvtHandler)
                 .build();
         FSMTransition solvedToPending = FSMTransition.builder()
                 .name("solvedToPending")
                 .from(solved)
                 .to(pending)
-                .on(SolvedToPendingEvt.class)
+                .on(SolvedToPendingEvt.class, defEvtHandler)
                 .build();
         FSMTransition solvedToClosed = FSMTransition.builder()
                 .name("solvedToClosed")
                 .from(solved)
                 .to(closed)
-                .on(SolvedToClosedEvt.class)
+                .on(SolvedToClosedEvt.class, defEvtHandler)
                 .build();
+
 
 
 
@@ -185,10 +191,16 @@ public class FSMTest {
                 // .finalState(closed)
                 .build();
 
-//        ticketFsm.fire(new CreatedToOpenEvt());
+        ticketFsm.fire(new CreatedToOpenEvt());
+        ticketFsm.fire(new OpenToPendingEvt());
+        ticketFsm.fire(new PendingToSolvedEvt());
+        ticketFsm.fire(new SolvedToClosedEvt());
 
         ticketFsm.fire(new ClosedToPendingEvt());
 
+        System.out.println(ticketFsm.getCurrentState());
+
+//        System.out.println(ticketFsm.getReachableTransitions(ticketFsm.getCurrentState()));
 
     }
 

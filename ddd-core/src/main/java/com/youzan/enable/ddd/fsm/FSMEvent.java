@@ -7,7 +7,6 @@ import lombok.ToString;
  * @author chuxiaofeng
  */
 @Getter
-@ToString
 public abstract class FSMEvent {
 
     @Getter
@@ -15,5 +14,10 @@ public abstract class FSMEvent {
 
     protected FSMEvent(final String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "FSMEvent(" + name + ")";
     }
 }

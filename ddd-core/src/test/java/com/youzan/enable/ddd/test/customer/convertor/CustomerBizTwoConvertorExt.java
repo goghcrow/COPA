@@ -23,7 +23,7 @@ public class CustomerBizTwoConvertorExt implements CustomerConvertorExtPt{
 
     @Override
     public CustomerEntity clientToEntity(CustomerCO customerCO){
-        CustomerEntity customerEntity = customerConvertor.clientToEntity(customerCO);
+        CustomerEntity customerEntity = customerConvertor.dtoToEntity(customerCO);
         //In this business, if customers from RFQ and Advertisement are both regarded as Advertisement
         if(Constants.SOURCE_AD.equals(customerCO.getSource()) || Constants.SOURCE_RFQ.equals(customerCO.getSource()))
         {

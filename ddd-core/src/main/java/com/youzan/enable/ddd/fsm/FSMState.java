@@ -16,4 +16,8 @@ public class FSMState {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "FSMState(" + name + ")";
+    }
 }

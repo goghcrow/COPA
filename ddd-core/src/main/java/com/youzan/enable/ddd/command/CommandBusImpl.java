@@ -30,11 +30,9 @@ public class CommandBusImpl implements CommandBus {
         BaseResult baseResult;
         try {
             baseResult = commandHub.getCommandInvocation(cmd.getClass()).invoke(cmd);
-        }
-        catch (Exception exception) {
+        } catch (Exception exception) {
             baseResult = handleException(cmd, exception);
-        }
-        finally {
+        } finally {
             //Clean up context
             Context.remove();
         }

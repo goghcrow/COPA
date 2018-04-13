@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 public class CustomerConvertor implements Convertor<CustomerCO, CustomerEntity, CustomerDO> {
 
     @Override
-    public CustomerEntity clientToEntity(CustomerCO customerCO){
+    public CustomerEntity dtoToEntity(CustomerCO customerCO){
         CustomerEntity customerEntity = (CustomerEntity) ApplicationContextHelper.getBean(CustomerEntity.class);
         customerEntity.setCompanyName(customerCO.getCompanyName());
         customerEntity.setCustomerType(customerCO.getCustomerType());

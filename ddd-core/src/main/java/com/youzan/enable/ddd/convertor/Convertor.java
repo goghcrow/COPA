@@ -1,21 +1,21 @@
 package com.youzan.enable.ddd.convertor;
 
 /**
- * Convertor  are used to convert Objects among Client Object, Domain Object and Data Object.
+ * Convertor are used to convert Objects among DTO, Domain Object(Entity) and Data Object.
  *
- * @author fulan.zjf on 2017/12/16.
+ * @author chuxiaofeng
  */
-public interface Convertor<C, E, D> {
+public interface Convertor<Dto, Entity, Do> {
 
-    default C entityToClient(E entityObject){return null;}
+    default Dto entityToDto(Entity entityObject){return null;}
 
-    default C dataToClient(D dataObject){return null;}
+    default Dto dataToDto(Do dataObject){return null;}
 
-    default E clientToEntity(C clientObject){return null;}
+    default Entity dtoToEntity(Dto clientObject){return null;}
 
-    default E dataToEntity(D dataObject){return null;}
+    default Entity dataToEntity(Do dataObject){return null;}
 
-    default D entityToData(E entityObject){return null;}
+    default Do entityToData(Entity entityObject){return null;}
 
 }
 

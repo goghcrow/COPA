@@ -2,7 +2,7 @@ package com.youzan.enable.ddd.exception;
 
 import com.youzan.api.common.enums.IErrorCode;
 
-public class BizException extends CrmException{
+public class BizException extends CrmException {
 
     private static final long serialVersionUID = 1L;
 

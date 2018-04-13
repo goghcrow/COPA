@@ -35,21 +35,20 @@ public final class FSM {
         finalStates = new HashSet<>();
     }
 
-    // TODO test
-    public final List<Class<? extends FSMEvent>> getNextEvents(@NotNull FSMState state) {
+    public final List<FSMTransition> getReachableTransitions(@NotNull FSMState state) {
         Objects.requireNonNull(state);
 
         if (!finalStates.isEmpty() && finalStates.contains(currentState)) {
             return new ArrayList<>(0);
         }
 
-        List<Class<? extends FSMEvent>> nextEvents = new ArrayList<>();
+        List<FSMTransition> reachable = new ArrayList<>();
         for (FSMTransition transition : transitions) {
             if (transition.getFrom().equals(state)) {
-                nextEvents.add(transition.getEventType());
+                reachable.add(transition);
             }
         }
-        return nextEvents;
+        return reachable;
     }
 
     /**
