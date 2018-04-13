@@ -14,9 +14,6 @@ import java.util.*;
 @Slf4j
 public final class FSM {
 
-    // TODO can trans check hook
-    // todo 查出下一步列表
-
     private FSMState currentState;
 
     private FSMState initialState;
