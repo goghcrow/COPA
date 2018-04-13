@@ -10,5 +10,5 @@ import com.youzan.api.common.response.PlainResult;
  */
 public interface CustomerService {
     BaseResult addCustomer(AddCustomerCmd addCustomerCmd);
-    PlainResult<CustomerCO> getCustomer(GetOneCustomerQry getOneCustomerQry);
+    PlainResult<CustomerDTO> getCustomer(GetOneCustomerQry getOneCustomerQry);
 }

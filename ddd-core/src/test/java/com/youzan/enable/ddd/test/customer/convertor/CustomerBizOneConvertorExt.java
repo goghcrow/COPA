@@ -3,7 +3,7 @@ package com.youzan.enable.ddd.test.customer.convertor;
 import com.youzan.enable.ddd.context.Context;
 import com.youzan.enable.ddd.annotation.Extension;
 import com.youzan.enable.ddd.test.customer.Constants;
-import com.youzan.enable.ddd.test.customer.CustomerCO;
+import com.youzan.enable.ddd.test.customer.CustomerDTO;
 import com.youzan.enable.ddd.test.customer.entity.CustomerEntity;
 import com.youzan.enable.ddd.test.customer.entity.SourceType;
 
@@ -22,14 +22,14 @@ public class CustomerBizOneConvertorExt  implements CustomerConvertorExtPt{
     private CustomerConvertor customerConvertor;//Composite basic convertor to do basic conversion
 
     @Override
-    public CustomerEntity clientToEntity(CustomerCO customerCO){
-        CustomerEntity customerEntity = customerConvertor.dtoToEntity(customerCO);
+    public CustomerEntity dtoToEntity(CustomerDTO customerDTO){
+        CustomerEntity customerEntity = customerConvertor.dtoToEntity(customerDTO);
         //In this business, AD and RFQ are regarded as different source
-        if(Constants.SOURCE_AD.equals(customerCO.getSource()))
+        if(Constants.SOURCE_AD.equals(customerDTO.getSource()))
         {
             customerEntity.setSourceType(SourceType.AD);
         }
-        if (Constants.SOURCE_RFQ.equals(customerCO.getSource())){
+        if (Constants.SOURCE_RFQ.equals(customerDTO.getSource())){
             customerEntity.setSourceType(SourceType.RFQ);
         }
         return customerEntity;

@@ -20,7 +20,7 @@ public class AddCustomerBizTwoValidator implements AddCustomerValidatorExtPt {
     public void validate(Object candidate) {
         AddCustomerCmd addCustomerCmd = (AddCustomerCmd) candidate;
         //For BIZ TWO CustomerTYpe could not be null
-        if (addCustomerCmd.getCustomerCO().getCustomerType() == null)
+        if (addCustomerCmd.getCustomerDTO().getCustomerType() == null)
             throw new ParamException("CustomerType could not be null");
     }
 

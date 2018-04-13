@@ -49,11 +49,11 @@ public class CustomerCommandTest {
 
 
         AddCustomerCmd addCustomerCmd = new AddCustomerCmd();
-        CustomerCO customerCO = new CustomerCO();
-        customerCO.setCompanyName("alibaba");
-        customerCO.setSource(Constants.SOURCE_RFQ);
-        customerCO.setCustomerType(CustomerType.IMPORTANT);
-        addCustomerCmd.setCustomerCO(customerCO);
+        CustomerDTO customerDTO = new CustomerDTO();
+        customerDTO.setCompanyName("alibaba");
+        customerDTO.setSource(Constants.SOURCE_RFQ);
+        customerDTO.setCustomerType(CustomerType.IMPORTANT);
+        addCustomerCmd.setCustomerDTO(customerDTO);
 
         //2. Execute
         BaseResult response = customerService.addCustomer(addCustomerCmd);
@@ -69,11 +69,11 @@ public class CustomerCommandTest {
         Context.set("tenantId", Constants.TENANT_ID);
 
         AddCustomerCmd addCustomerCmd = new AddCustomerCmd();
-        CustomerCO customerCO = new CustomerCO();
-        customerCO.setCompanyName("alibaba");
-        customerCO.setSource(Constants.SOURCE_AD);
-        customerCO.setCustomerType(CustomerType.IMPORTANT);
-        addCustomerCmd.setCustomerCO(customerCO);
+        CustomerDTO customerDTO = new CustomerDTO();
+        customerDTO.setCompanyName("alibaba");
+        customerDTO.setSource(Constants.SOURCE_AD);
+        customerDTO.setCustomerType(CustomerType.IMPORTANT);
+        addCustomerCmd.setCustomerDTO(customerDTO);
 
         //2. Execute
         BaseResult response = customerService.addCustomer(addCustomerCmd);
@@ -90,11 +90,11 @@ public class CustomerCommandTest {
         Context.set("tenantId", Constants.TENANT_ID);
 
         AddCustomerCmd addCustomerCmd = new AddCustomerCmd();
-        CustomerCO customerCO = new CustomerCO();
-        customerCO.setCompanyName("alibaba");
-        customerCO.setSource(Constants.SOURCE_AD);
-        customerCO.setCustomerType(CustomerType.IMPORTANT);
-        addCustomerCmd.setCustomerCO(customerCO);
+        CustomerDTO customerDTO = new CustomerDTO();
+        customerDTO.setCompanyName("alibaba");
+        customerDTO.setSource(Constants.SOURCE_AD);
+        customerDTO.setCustomerType(CustomerType.IMPORTANT);
+        addCustomerCmd.setCustomerDTO(customerDTO);
 
         //2. Execute
         BaseResult response = customerService.addCustomer(addCustomerCmd);
@@ -106,11 +106,11 @@ public class CustomerCommandTest {
     @Test
     public void testCompanyTypeViolation(){
         AddCustomerCmd addCustomerCmd = new AddCustomerCmd();
-        CustomerCO customerCO = new CustomerCO();
-        customerCO.setCompanyName("alibaba");
-        customerCO.setSource("p4p");
-        customerCO.setCustomerType(CustomerType.VIP);
-        addCustomerCmd.setCustomerCO(customerCO);
+        CustomerDTO customerDTO = new CustomerDTO();
+        customerDTO.setCompanyName("alibaba");
+        customerDTO.setSource("p4p");
+        customerDTO.setCustomerType(CustomerType.VIP);
+        addCustomerCmd.setCustomerDTO(customerDTO);
         BaseResult response = customerService.addCustomer(addCustomerCmd);
 
         //Expect biz exception

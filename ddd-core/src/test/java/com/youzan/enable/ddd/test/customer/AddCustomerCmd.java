@@ -17,5 +17,5 @@ public class AddCustomerCmd extends Command {
 
     @NotNull
     @Valid
-    private CustomerCO customerCO;
+    private CustomerDTO customerDTO;
 }

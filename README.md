@@ -313,7 +313,7 @@ public @interface PreInterceptor {
 public class AddCustomerCmd extends Command {
     @NotNull
     @Valid
-    private CustomerCO customerCO;
+    private CustomerCO customerDTO;
 }
 
 
@@ -373,7 +373,7 @@ interface Command<T> {
 2. 对原有结构入侵太大，测试成本比较高
 3. 具体使用场景
     1. Cmd 涉及到 Bean  组装，需要借助 spring 容器, 且需要 都定义成 prototype，使用者容易迷惑
-    2. Cmd 创建代码比较繁琐 AddCustomerCmd cmd = (AddCustomerCmd) ApplicationContextHelper.getBean(AddCustomerCmd.class, customerCO);
+    2. Cmd 创建代码比较繁琐 AddCustomerCmd cmd = (AddCustomerCmd) ApplicationContextHelper.getBean(AddCustomerCmd.class, customerDTO);
 
 ```java
 @Data
@@ -385,7 +385,7 @@ public class AddCustomerCmd implements Command<Response> {
     @NotNull
     @Valid
     @Setter
-    private CustomerDTO customerCO;
+    private CustomerDTO customerDTO;
 
     @Resource
     private ValidatorExecutor validatorExecutor;
@@ -394,8 +394,8 @@ public class AddCustomerCmd implements Command<Response> {
     private ExtensionExecutor extensionExecutor;
 
 
-    public AddCustomerCmd(CustomerDTO customerCO) {
-        this.customerCO = customerCO;
+    public AddCustomerCmd(CustomerDTO customerDTO) {
+        this.customerDTO = customerDTO;
     }
 
     @Override
@@ -404,7 +404,7 @@ public class AddCustomerCmd implements Command<Response> {
         validatorExecutor.validate(AddCustomerValidatorExtPt.class, this);
 
         //Convert CO to Entity
-        CustomerEntity customerEntity = extensionExecutor.execute(CustomerConvertorExtPt.class, extension -> extension.clientToEntity(customerCO));
+        CustomerEntity customerEntity = extensionExecutor.execute(CustomerConvertorExtPt.class, extension -> extension.dtoToEntity(customerDTO));
 
         //Call Domain Entity for business logic processing
         log.info("Call Domain Entity for business logic processing..."+customerEntity);
@@ -420,8 +420,8 @@ public class AddCustomerCmd implements Command<Response> {
 public class CustomerServiceImpl extends ServiceImpl implements CustomerServiceI {
 
     @Override
-    public Response addCustomer(CustomerDTO customerCO) {
-        AddCustomerCmd cmd = (AddCustomerCmd) ApplicationContextHelper.getBean(AddCustomerCmd.class, customerCO);
+    public Response addCustomer(CustomerDTO customerDTO) {
+        AddCustomerCmd cmd = (AddCustomerCmd) ApplicationContextHelper.getBean(AddCustomerCmd.class, customerDTO);
         return commandExecutor.execute(cmd);
     }
 
@@ -451,7 +451,7 @@ public class CustomerServiceImpl extends ServiceImpl implements CustomerServiceI
 public class AddCustomerCmd extends Command {
     @NotNull
     @Valid
-    private CustomerCO customerCO;
+    private CustomerCO customerDTO;
 }
 
 ```
@@ -481,7 +481,7 @@ public class AddCustomerCmdExe implements CommandExecutor<BaseResult, AddCustome
 
         //Convert CO to Entity
         CustomerEntity customerEntity = extensionExecutor.execute(CustomerConvertorExtPt.class,
-                extension -> extension.clientToEntity(cmd.getCustomerCO()));
+                extension -> extension.dtoToEntity(cmd.getCustomerCO()));
 
         //Call Domain Entity for business logic processing
         log.info("Call Domain Entity for business logic processing..."+customerEntity);

@@ -9,7 +9,7 @@ import lombok.Setter;
  * @date 2017/11/20
  */
 public class Event extends DTO {
-    private static final long serialVersionUID = 5740150436439366761L;
+    private static final long serialVersionUID = 1L;
 
     @Getter
     @Setter

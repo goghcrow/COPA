@@ -11,7 +11,7 @@ public interface Convertor<Dto, Entity, Do> {
 
     default Dto dataToDto(Do dataObject){return null;}
 
-    default Entity dtoToEntity(Dto clientObject){return null;}
+    default Entity dtoToEntity(Dto dto){return null;}
 
     default Entity dataToEntity(Do dataObject){return null;}
 

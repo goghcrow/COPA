@@ -2,7 +2,7 @@ package com.youzan.enable.ddd.test.customer.convertor;
 
 import com.youzan.enable.ddd.convertor.Convertor;
 import com.youzan.enable.ddd.extension.ExtensionPoint;
-import com.youzan.enable.ddd.test.customer.CustomerCO;
+import com.youzan.enable.ddd.test.customer.CustomerDTO;
 import com.youzan.enable.ddd.test.customer.entity.CustomerEntity;
 
 /**
@@ -13,6 +13,6 @@ import com.youzan.enable.ddd.test.customer.entity.CustomerEntity;
  */
 public interface CustomerConvertorExtPt extends Convertor, ExtensionPoint {
 
-    CustomerEntity clientToEntity(CustomerCO customerCO);
+    CustomerEntity dtoToEntity(CustomerDTO customerDTO);
 
 }

@@ -24,7 +24,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public PlainResult<CustomerCO> getCustomer(GetOneCustomerQry getOneCustomerQry) {
+    public PlainResult<CustomerDTO> getCustomer(GetOneCustomerQry getOneCustomerQry) {
         return null;
     }
 }
