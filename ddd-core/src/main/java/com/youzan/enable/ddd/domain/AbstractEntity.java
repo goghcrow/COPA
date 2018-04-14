@@ -7,13 +7,13 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Date;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 领域实体基类
  * @author chuxiaofeng
  */
-@Data
 public abstract class AbstractEntity<ID> implements Entity {
 
 	@Getter
@@ -51,4 +51,24 @@ public abstract class AbstractEntity<ID> implements Entity {
         this.extValues.put(fieldName, value);
     }
 
+	@Override
+	public boolean equals(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
+		final AbstractEntity other = ((AbstractEntity) obj);
+		return Objects.equals(id, other.id) &&
+				Objects.equals(createdAt, other.createdAt) &&
+				Objects.equals(updatedAt, other.updatedAt) &&
+				Objects.equals(deletedAt, other.deletedAt) &&
+				Objects.equals(extValues, other.extValues);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, createdAt, updatedAt, deletedAt, extValues);
+	}
 }
