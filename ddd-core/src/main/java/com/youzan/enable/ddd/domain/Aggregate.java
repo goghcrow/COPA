@@ -3,6 +3,8 @@ package com.youzan.enable.ddd.domain;
 /**
  * 聚合
  *
+ * 不要使用该接口，仅作为文档
+ *
  * <h2>What is an aggregate?</h2>
  * A larger unit of encapsulation than just a class.
  * Every transaction is scoped to a single aggregate.
