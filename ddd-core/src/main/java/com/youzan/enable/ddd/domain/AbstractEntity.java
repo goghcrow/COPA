@@ -1,5 +1,6 @@
 package com.youzan.enable.ddd.domain;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
@@ -12,6 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * 领域实体基类
  * @author chuxiaofeng
  */
+@Data
 public abstract class AbstractEntity<ID> implements Entity {
 
 	@Getter
