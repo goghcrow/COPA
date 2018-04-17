@@ -31,8 +31,8 @@
 		<!--<slf4j.version>1.7.22</slf4j.version>-->
 		<ddd.framework.version>1.0.0-SNAPSHOT</ddd.framework.version>
 		<toolkit.common.lang.version>1.0</toolkit.common.lang.version>
-		<jakarta.commons.beanutils.version>1.8.3</jakarta.commons.beanutils.version>
-
+		<!--<jakarta.commons.beanutils.version>1.8.3</jakarta.commons.beanutils.version>-->
+		<guava.version>24.1-jre</guava.version>
 
 
 		<jetbrains.annotions.version>16.0.1</jetbrains.annotions.version>
@@ -159,7 +159,7 @@
 			<dependency>
 				<groupId>org.reflections</groupId>
 				<artifactId>reflections</artifactId>
-				<version>0.9.10</version>
+				<version>0.9.11</version>
 			</dependency>
 			<!-- Commons依赖End -->
 			<!--Validation API-->
@@ -207,6 +207,16 @@
 				<version>${youzan.common.version}</version>
 			</dependency>
 			<!--Youzan common-model End -->
+
+			<!--Guava Start-->
+			<!--使用新版本的 Guava 否则会产生 jar 冲突-->
+			<!--java.lang.NoSuchMethodError: com.google.common.collect.Sets$SetView.iterator()Lcom/google/common/collect/UnmodifiableIterator;-->
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${guava.version}</version>
+			</dependency>
+			<!--Guava End-->
 		</dependencies>
 	</dependencyManagement>
 
