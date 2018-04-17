@@ -10,6 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.stereotype.Component;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -34,7 +35,7 @@ public class ExtensionOrderTest {
         }
     }
 
-    @Extension(order = 10)
+    @Extension(order = 10) @Component
     static class Test1Ext extends TestExt implements TestExtPt {
         @Override
         public boolean match() {
@@ -42,7 +43,7 @@ public class ExtensionOrderTest {
         }
     }
 
-    @Extension(order = 10)
+    @Extension(order = 10) @Component
     static class Test2Ext extends TestExt implements TestExtPt {
         @Override
         public boolean match() {
@@ -50,7 +51,7 @@ public class ExtensionOrderTest {
         }
     }
 
-    @Extension(order = 20)
+    @Extension(order = 20) @Component
     static class Test3Ext extends TestExt implements TestExtPt {
         @Override
         public boolean match() {
@@ -59,7 +60,7 @@ public class ExtensionOrderTest {
         }
     }
 
-    @Extension(order = 0)
+    @Extension(order = 0) @Component
     static class Test4Ext extends TestExt implements TestExtPt {
         @Override
         public boolean match() {

@@ -6,6 +6,7 @@ import com.youzan.enable.ddd.test.customer.Constants;
 import com.youzan.enable.ddd.test.customer.CustomerDTO;
 import com.youzan.enable.ddd.test.customer.entity.CustomerEntity;
 import com.youzan.enable.ddd.test.customer.entity.SourceType;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 
@@ -15,7 +16,7 @@ import javax.annotation.Resource;
  * @author Frank Zhang
  * @date 2018-01-07 3:05 AM
  */
-@Extension
+@Extension @Component
 public class CustomerBizTwoConvertorExt implements CustomerConvertorExtPt{
 
     @Resource

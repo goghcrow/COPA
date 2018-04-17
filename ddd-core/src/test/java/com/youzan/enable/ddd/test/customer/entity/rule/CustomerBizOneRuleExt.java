@@ -6,6 +6,7 @@ import com.youzan.enable.ddd.annotation.Extension;
 import com.youzan.enable.ddd.test.customer.Constants;
 import com.youzan.enable.ddd.test.customer.entity.CustomerEntity;
 import com.youzan.enable.ddd.test.customer.entity.SourceType;
+import org.springframework.stereotype.Component;
 
 /**
  * CustomerBizOneRuleExt
@@ -13,7 +14,7 @@ import com.youzan.enable.ddd.test.customer.entity.SourceType;
  * @author Frank Zhang
  * @date 2018-01-07 12:10 PM
  */
-@Extension
+@Extension @Component
 public class CustomerBizOneRuleExt implements CustomerRuleExtPt {
 
     @Override

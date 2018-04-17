@@ -6,6 +6,7 @@ import com.youzan.enable.ddd.annotation.Extension;
 import com.youzan.enable.ddd.test.customer.AddCustomerCmd;
 import com.youzan.enable.ddd.test.customer.Constants;
 import com.youzan.enable.ddd.test.customer.validator.extensionpoint.AddCustomerValidatorExtPt;
+import org.springframework.stereotype.Component;
 
 /**
  * AddCustomerBizTwoValidator
@@ -13,7 +14,7 @@ import com.youzan.enable.ddd.test.customer.validator.extensionpoint.AddCustomerV
  * @author Frank Zhang
  * @date 2018-01-07 1:31 AM
  */
-@Extension
+@Extension @Component
 public class AddCustomerBizTwoValidator implements AddCustomerValidatorExtPt {
 
     @Override

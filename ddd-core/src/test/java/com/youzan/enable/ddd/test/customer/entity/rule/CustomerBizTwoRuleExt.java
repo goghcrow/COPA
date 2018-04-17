@@ -4,6 +4,7 @@ import com.youzan.enable.ddd.context.Context;
 import com.youzan.enable.ddd.annotation.Extension;
 import com.youzan.enable.ddd.test.customer.Constants;
 import com.youzan.enable.ddd.test.customer.entity.CustomerEntity;
+import org.springframework.stereotype.Component;
 
 /**
  * CustomerBizTwoRuleExt
@@ -11,7 +12,7 @@ import com.youzan.enable.ddd.test.customer.entity.CustomerEntity;
  * @author Frank Zhang
  * @date 2018-01-07 12:10 PM
  */
-@Extension
+@Extension @Component
 public class CustomerBizTwoRuleExt implements CustomerRuleExtPt {
 
     @Override
