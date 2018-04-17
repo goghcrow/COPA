@@ -32,7 +32,8 @@
 		<ddd.framework.version>1.0.0-SNAPSHOT</ddd.framework.version>
 		<toolkit.common.lang.version>1.0</toolkit.common.lang.version>
 		<!--<jakarta.commons.beanutils.version>1.8.3</jakarta.commons.beanutils.version>-->
-		<guava.version>24.1-jre</guava.version>
+		<!--<guava.version>24.1-jre</guava.version>-->
+		<reflections.version>0.9.10</reflections.version>
 
 
 		<jetbrains.annotions.version>16.0.1</jetbrains.annotions.version>
@@ -156,11 +157,6 @@
                 <artifactId>lombok</artifactId>
 				<version>${lombok.version}</version>
             </dependency>
-			<dependency>
-				<groupId>org.reflections</groupId>
-				<artifactId>reflections</artifactId>
-				<version>0.9.11</version>
-			</dependency>
 			<!-- Commons依赖End -->
 			<!--Validation API-->
 			<dependency>
@@ -208,15 +204,23 @@
 			</dependency>
 			<!--Youzan common-model End -->
 
-			<!--Guava Start-->
-			<!--使用新版本的 Guava 否则会产生 jar 冲突-->
+			<!--解决冲突 Start-->
+			<!--解决 和 haunt-client 依赖的低版本 guava 版本冲突问题
+haunt-client 依赖的 guava 中方法,在 guava 20+ 的版本中已经被移除
+而reflections 0.9.11 中使用的新方法在旧版 guava 中没有
+guava 冲突-->
 			<!--java.lang.NoSuchMethodError: com.google.common.collect.Sets$SetView.iterator()Lcom/google/common/collect/UnmodifiableIterator;-->
 			<dependency>
 				<groupId>com.google.guava</groupId>
 				<artifactId>guava</artifactId>
 				<version>${guava.version}</version>
 			</dependency>
-			<!--Guava End-->
+			<dependency>
+				<groupId>org.reflections</groupId>
+				<artifactId>reflections</artifactId>
+				<version>${reflections.version}</version>
+			</dependency>
+			<!--解决冲突 End-->
 		</dependencies>
 	</dependencyManagement>
 

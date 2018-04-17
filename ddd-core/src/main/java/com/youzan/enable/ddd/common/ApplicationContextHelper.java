@@ -1,5 +1,6 @@
 package com.youzan.enable.ddd.common;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @date 2018-01-07 12:30 PM
  */
 @Component
-public class ApplicationContextHelper implements ApplicationContextAware{
+public class ApplicationContextHelper implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;
 
@@ -23,8 +24,16 @@ public class ApplicationContextHelper implements ApplicationContextAware{
         ApplicationContextHelper.applicationContext = applicationContext;
     }
 
-    public static Object getBean(Class claz){
-        return ApplicationContextHelper.applicationContext.getBean(claz);
+    public static <T> T getBean(@NotNull Class<T> requiredType){
+        return ApplicationContextHelper.applicationContext.getBean(requiredType);
+    }
+
+    public static <T> T getBean(Class<T> requiredType, Object... args) {
+        return ApplicationContextHelper.applicationContext.getBean(requiredType, args);
+    }
+
+    public static Object getBean(@NotNull String name, Object... args) {
+        return ApplicationContextHelper.applicationContext.getBean(name, args);
     }
 
     public static ApplicationContext getApplicationContext() {
