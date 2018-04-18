@@ -33,8 +33,7 @@ public class CommandInvocation<R extends BaseResult, C extends Command> {
         try {
             response = commandExecutor.execute(command);  
             response.setSuccess(true);
-        }
-        finally {
+        } finally {
             //make sure post interceptors performs even though exception happens
             postIntercept(command, response);     
         }          

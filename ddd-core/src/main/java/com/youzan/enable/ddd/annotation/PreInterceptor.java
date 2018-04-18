@@ -13,4 +13,7 @@ public @interface PreInterceptor {
 
     Class<? extends Command>[] commands() default {};
 
+    // TODO: 支持拦截器 order
+    // int order() default 0;
+
 }

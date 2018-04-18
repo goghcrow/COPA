@@ -29,6 +29,7 @@ public class PreInterceptorRegister implements Register, ApplicationContextAware
         CommandInterceptor commandInterceptor = (CommandInterceptor) applicationContext.getBean(targetClz);
         PreInterceptor preInterceptorAnn = targetClz.getDeclaredAnnotation(PreInterceptor.class);
         Class<? extends Command>[] supportClasses = preInterceptorAnn.commands();
+        // int order = preInterceptorAnn.order();
         registerInterceptor(supportClasses, commandInterceptor);        
     }
 

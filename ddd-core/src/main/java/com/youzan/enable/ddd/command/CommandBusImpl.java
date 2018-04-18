@@ -28,6 +28,7 @@ public class CommandBusImpl implements CommandBus {
     @Override
     public BaseResult send(com.youzan.enable.ddd.dto.Command cmd) {
         BaseResult baseResult;
+
         try {
             baseResult = commandHub.getCommandInvocation(cmd.getClass()).invoke(cmd);
         } catch (Exception exception) {
@@ -36,12 +37,14 @@ public class CommandBusImpl implements CommandBus {
             //Clean up context
             Context.remove();
         }
+
         return baseResult;
     }
 
     private BaseResult handleException(Command cmd, Exception exception) {
         log.error(exception.getMessage(), exception);
         Class responseClz = commandHub.getResponseRepository().get(cmd.getClass());
+
         BaseResult baseResult;
         try {
             baseResult = (BaseResult) responseClz.newInstance();
@@ -50,14 +53,18 @@ public class CommandBusImpl implements CommandBus {
             throw new InfraException(e.getMessage());
         }
         baseResult.setSuccess(false);
+
         if (exception instanceof CrmException) {
             IErrorCode errCode = ((CrmException) exception).getErrCode();
             baseResult.setCode(errCode.getCode());
-        }
-        else {
+            baseResult.setMessage(exception.getMessage());
+        } else {
+            // 一些异常, 比如 npe , 没有 message
+            String exName = exception.getClass().getSimpleName();
+            baseResult.setMessage(exName + ":" + exception.getMessage());
             baseResult.setCode(BasicErrorCode.SYS_ERROR.getCode());
         }
-        baseResult.setMessage(exception.getMessage());
+
         return baseResult;
     }
 }
