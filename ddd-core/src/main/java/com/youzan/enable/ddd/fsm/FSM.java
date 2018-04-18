@@ -1,7 +1,5 @@
 package com.youzan.enable.ddd.fsm;
 
-import com.google.common.collect.LinkedListMultimap;
-import com.google.common.collect.ListMultimap;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
@@ -34,18 +32,17 @@ public final class FSM {
         finalStates = new HashSet<>();
     }
 
-    public final ListMultimap<FSMState, FSMTransition> getReachableTransitions(@NotNull FSMState state) {
+    public final List<FSMTransition> getReachableTransitions(@NotNull FSMState state) {
         Objects.requireNonNull(state);
 
-        ListMultimap<FSMState, FSMTransition> reachable = LinkedListMultimap.create();
-
         if (!finalStates.isEmpty() && finalStates.contains(currentState)) {
-            return reachable;
+            return new ArrayList<>(0);
         }
 
+        List<FSMTransition> reachable = new ArrayList<>();
         for (FSMTransition transition : transitions) {
             if (transition.getFrom().equals(state)) {
-                reachable.put(transition.getFrom(), transition);
+                reachable.add(transition);
             }
         }
         return reachable;
