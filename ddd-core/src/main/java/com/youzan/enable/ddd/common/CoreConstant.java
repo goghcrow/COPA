@@ -24,4 +24,7 @@ public class CoreConstant {
 
     public final static String EXE_METHOD = "execute";
 
+
+    public final static String CTX_KEY_CMD = "$command";
+
 }

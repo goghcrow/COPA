@@ -1,5 +1,7 @@
 package com.youzan.enable.ddd.context;
 
+import com.youzan.enable.ddd.common.CoreConstant;
+import com.youzan.enable.ddd.dto.Command;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -33,6 +35,10 @@ public class Context {
     public static void remove() {
         // context.remove();
         context.get().clear();
+    }
+
+    public static <T extends Command> T getCommand() {
+        return get(CoreConstant.CTX_KEY_CMD);
     }
 
 }

@@ -2,6 +2,7 @@ package com.youzan.enable.ddd.command;
 
 import com.youzan.api.common.enums.IErrorCode;
 import com.youzan.api.common.response.BaseResult;
+import com.youzan.enable.ddd.common.CoreConstant;
 import com.youzan.enable.ddd.context.Context;
 import com.youzan.enable.ddd.dto.Command;
 import com.youzan.enable.ddd.exception.BasicErrorCode;
@@ -26,10 +27,11 @@ public class CommandBusImpl implements CommandBus {
 
     @SuppressWarnings("unchecked")
     @Override
-    public BaseResult send(com.youzan.enable.ddd.dto.Command cmd) {
+    public BaseResult send(Command cmd) {
         BaseResult baseResult;
 
         try {
+            Context.set(CoreConstant.CTX_KEY_CMD, cmd);
             baseResult = commandHub.getCommandInvocation(cmd.getClass()).invoke(cmd);
         } catch (Exception exception) {
             baseResult = handleException(cmd, exception);
