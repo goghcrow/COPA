@@ -104,7 +104,7 @@ api/app/domain/infrastructure 只是逻辑上的名称，对应到具体项目�
 ## 扩展点
 
 扩展点（ExtensionPoint）必须通过接口声明，扩展实现（Extension）通过 Annotation 方式标注，
-Extension 通过 @Extension(order = ${num}) 声明的匹配顺序进行**唯一**性匹配，匹配规则则 @Extension
+Extension 通过 @Order(${num}) 声明的匹配顺序进行**唯一**性匹配，匹配规则则 @Extension
 标注的 ExtensionPoint 实现类重新 match 方法；
 
 一个从精确到模糊的匹配实例：
@@ -193,7 +193,8 @@ public class CustomerUpdateBizARuleExt implements CustomerUpdateRuleExtPt {
 ```java
 // 扩展点1
 // A 业务的 修改客户信息规则
-@Extension(order = 10)
+@Extension
+@Order(10)
 public class CustomerUpdateBizARuleExt implements CustomerUpdateRuleExtPt {
     @Override
     public void updateCustomerCheck(CustomerEntity customerEntity) {
@@ -213,7 +214,8 @@ public class CustomerUpdateBizARuleExt implements CustomerUpdateRuleExtPt {
 
 // 扩展点2
 // B 业务的 修改客户信息规则
-@Extension(order = 10)
+@Extension
+@Order(10)
 public class CustomerUpdateBizARuleExt implements CustomerUpdateRuleExtPt {
     @Override
     public void updateCustomerCheck(CustomerEntity customerEntity) {
