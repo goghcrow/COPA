@@ -10,6 +10,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.core.Ordered;
+import org.springframework.core.PriorityOrdered;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -35,7 +38,9 @@ public class ExtensionOrderTest {
         }
     }
 
-    @Extension(order = 10) @Component
+    @Extension
+    @Order(Ordered.HIGHEST_PRECEDENCE)
+    @Component
     static class Test1Ext extends TestExt implements TestExtPt {
         @Override
         public boolean match() {
@@ -43,7 +48,9 @@ public class ExtensionOrderTest {
         }
     }
 
-    @Extension(order = 10) @Component
+    @Extension
+    @Order(Ordered.HIGHEST_PRECEDENCE)
+    @Component
     static class Test2Ext extends TestExt implements TestExtPt {
         @Override
         public boolean match() {
@@ -51,16 +58,23 @@ public class ExtensionOrderTest {
         }
     }
 
-    @Extension(order = 20) @Component
-    static class Test3Ext extends TestExt implements TestExtPt {
+    @Extension
+    @Component
+    static class Test3Ext extends TestExt implements TestExtPt, PriorityOrdered {
         @Override
         public boolean match() {
             return "B".equals(Context.get("bizCode")) &&
                     Objects.equals(1, Context.get("tenantId"));
         }
+
+        @Override
+        public int getOrder() {
+            return 0;
+        }
     }
 
-    @Extension(order = 0) @Component
+    @Extension
+    @Component
     static class Test4Ext extends TestExt implements TestExtPt {
         @Override
         public boolean match() {

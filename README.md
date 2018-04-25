@@ -142,7 +142,7 @@ Context.set("tenantId", 1);
 
 // 扩展点1
 // A 业务的 修改客户信息规则
-@Extension
+@Extension(order = Ordered.HIGHEST_PRECEDENCE)
 public class CustomerUpdateBizARuleExt implements CustomerUpdateRuleExtPt {
     @Override
     public void updateCustomerCheck(CustomerEntity customerEntity) {
@@ -162,7 +162,7 @@ public class CustomerUpdateBizARuleExt implements CustomerUpdateRuleExtPt {
 
 // 扩展点2
 // 其他 业务的 修改客户信息规则
-@Extension(order = 10)
+@Extension
 public class CustomerUpdateBizARuleExt implements CustomerUpdateRuleExtPt {
     @Override
     public void updateCustomerCheck(CustomerEntity customerEntity) {}
@@ -231,7 +231,8 @@ public class CustomerUpdateBizARuleExt implements CustomerUpdateRuleExtPt {
 
 // 扩展点3
 // 但是针对 B 业务的特定租户(id=1)允许修改客户信息
-@Extension(order = 20)
+@Extension
+@Order(Ordered.HIGHEST_PRECEDENCE)
 public class CustomerUpdateBizARuleExt implements CustomerUpdateRuleExtPt {
     @Override
     public void updateCustomerCheck(CustomerEntity customerEntity) {}
@@ -248,7 +249,7 @@ public class CustomerUpdateBizARuleExt implements CustomerUpdateRuleExtPt {
 
 // 扩展点4
 // 通用的修改客户信息规则
-@Extension(order = 0)
+@Order(Ordered.LOWEST_PRECEDENCE)
 public class CustomerUpdateBizARuleExt implements CustomerUpdateRuleExtPt {
     @Override
     public void updateCustomerCheck(CustomerEntity customerEntity) {

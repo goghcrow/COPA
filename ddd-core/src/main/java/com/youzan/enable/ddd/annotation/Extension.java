@@ -13,5 +13,4 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE})
 @Component
 public @interface Extension {
-    int order() default 0;
 }

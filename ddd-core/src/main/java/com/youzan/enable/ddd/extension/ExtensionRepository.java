@@ -9,6 +9,10 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import org.apache.commons.lang3.ArrayUtils;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.core.OrderComparator;
+import org.springframework.core.Ordered;
+import org.springframework.core.PriorityOrdered;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -27,17 +31,19 @@ public class ExtensionRepository {
     private Map<String, List<ExtPtEntry>> extensionRepo = new HashMap<>();
 
 
-    @Data
     @AllArgsConstructor
     @EqualsAndHashCode
-    private static class ExtPtEntry implements Comparable<ExtPtEntry> {
-        private Class<?> targetClz;
-        private ExtensionPoint extensionPoint;
-        private int order;
+    private static class ExtPtEntry implements Ordered {
+        Class<?> targetClz;
+        ExtensionPoint extensionPoint;
+        @Getter
+        int order = Ordered.LOWEST_PRECEDENCE;
+    }
 
-        @Override
-        public int compareTo(@NotNull ExtPtEntry other) {
-            return -Integer.compare(order, other.order);
+    @EqualsAndHashCode(callSuper = true)
+    private static class PriorityExtPtEntry extends ExtPtEntry implements PriorityOrdered {
+        public PriorityExtPtEntry(Class<?> targetClz, ExtensionPoint extensionPoint, int order) {
+            super(targetClz, extensionPoint, order);
         }
     }
 
@@ -54,7 +60,16 @@ public class ExtensionRepository {
         Class<?> extPtClz = getExtPtFromExt(extClz);
         String extPtName = calcExtNameFromExtPt(extPtClz);
 
-        ExtPtEntry extPtEntry = new ExtPtEntry(extClz, extension, extensionAnn.order());
+        // 默认最低优先级
+        Order order = extClz.getDeclaredAnnotation(Order.class);
+        int sort = order == null ? Ordered.LOWEST_PRECEDENCE : order.value();
+
+        ExtPtEntry extPtEntry;
+        if (PriorityOrdered.class.isAssignableFrom(extClz)) {
+            extPtEntry = new PriorityExtPtEntry(extClz, extension, sort);
+        } else {
+            extPtEntry = new ExtPtEntry(extClz, extension, sort);
+        }
 
         return addExtensionPoint(extPtName, extPtEntry);
     }
@@ -75,7 +90,8 @@ public class ExtensionRepository {
         extensionRepo.computeIfAbsent(extPtName, k -> new ArrayList<>());
         List<ExtPtEntry> lst = extensionRepo.get(extPtName);
         boolean newAdded = lst.add(extPtEntry);
-        Collections.sort(lst);
+
+        OrderComparator.sort(lst);
         return newAdded;
     }
 
@@ -87,8 +103,8 @@ public class ExtensionRepository {
         }
 
         for (ExtPtEntry extPt : extPts) {
-            if (extPt.getExtensionPoint().match()) {
-                return (Ext) extPt.getExtensionPoint();
+            if (extPt.extensionPoint.match()) {
+                return (Ext) extPt.extensionPoint;
             }
         }
 
