@@ -30,7 +30,7 @@ public interface Rule {
 
 	default Rule and(@NotNull Rule other) {
 		Objects.requireNonNull(other);
-		return candidate -> check(candidate) && !other.check(candidate);
+		return candidate -> check(candidate) && other.check(candidate);
 	}
 
 	default Rule andNot(@NotNull Rule other) {
