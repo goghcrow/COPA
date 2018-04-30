@@ -67,10 +67,6 @@ public class RegisterFactory{
     }
 
     private boolean isPlainRule(Class<?> targetClz) {
-        if (Modifier.isAbstract(targetClz.getModifiers())) {
-            return false;
-        }
-
         if (ClassInterfaceChecker.check(targetClz, CoreConstant.RULE_CLASS) && makeSureItsNotExtensionPoint(targetClz)) {
             return true;
         }
@@ -78,10 +74,6 @@ public class RegisterFactory{
     }
 
     private boolean isPlainValidator(Class<?> targetClz) {
-        if (Modifier.isAbstract(targetClz.getModifiers())) {
-            return false;
-        }
-
         if (ClassInterfaceChecker.check(targetClz, CoreConstant.VALIDATOR_CLASS) && makeSureItsNotExtensionPoint(targetClz)) {
             return true;
         }
