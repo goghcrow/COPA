@@ -25,8 +25,6 @@ public class ValidatorExecutor extends ExtensionExecutor {
     @SuppressWarnings("unchecked")
     @Override
     protected <C> C locateComponent(@NotNull Class<C> targetClz) {
-        // semantically
-        assert targetClz.isInterface();
         C validator = (C) plainValidatorRepository.getPlainValidators().get(targetClz);
         return validator != null ? validator : super.locateComponent(targetClz);
     }

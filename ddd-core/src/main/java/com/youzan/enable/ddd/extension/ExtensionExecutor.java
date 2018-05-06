@@ -20,8 +20,6 @@ public class ExtensionExecutor extends ComponentExecutor {
 
     @Override
     protected <Com> Com locateComponent(@NotNull Class<Com> targetClz) {
-        // semantically
-        assert targetClz.isInterface();
         Com extension = locateExtension(targetClz);
         log.debug("[Located Extension]: " + extension.getClass().getName());
         return extension;

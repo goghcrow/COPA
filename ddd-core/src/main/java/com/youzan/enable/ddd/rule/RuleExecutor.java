@@ -32,8 +32,6 @@ public class RuleExecutor extends ExtensionExecutor {
     @SuppressWarnings("unchecked")
     @Override
     protected <Com> Com locateComponent(@NotNull Class<Com> targetClz) {
-        // semantically
-        assert targetClz.isInterface();
         Com rule = (Com) plainRuleRepository.getPlainRules().get(targetClz);
         return rule != null ? rule : super.locateComponent(targetClz);
     }

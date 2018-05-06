@@ -81,7 +81,6 @@ public class ExtensionRepository {
      */
     @SuppressWarnings("unchecked")
     public <Ext> Ext getExtensionPoint(Class<Ext> extPtClz) {
-        assert extPtClz.isInterface();
         String extPtName =  calcExtNameFromExtPt(extPtClz);
         return getExtensionPoint(extPtName);
     }
