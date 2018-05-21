@@ -2,10 +2,10 @@ package com.youzan.enable.ddd.boot.register;
 
 import com.google.common.collect.Iterables;
 import com.youzan.enable.ddd.boot.Register;
-import com.youzan.enable.ddd.command.CommandHub;
-import com.youzan.enable.ddd.command.CommandInvocation;
 import com.youzan.enable.ddd.command.CommandExecutor;
+import com.youzan.enable.ddd.command.CommandHub;
 import com.youzan.enable.ddd.command.CommandInterceptor;
+import com.youzan.enable.ddd.command.CommandInvocation;
 import com.youzan.enable.ddd.common.CoreConstant;
 import com.youzan.enable.ddd.dto.Command;
 import com.youzan.enable.ddd.exception.InfraException;
@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.lang.reflect.Method;
+import java.util.List;
 
 /**
  * CommandRegister
@@ -35,10 +36,12 @@ public class CommandRegister implements Register, ApplicationContextAware {
     @Override
     public void doRegistration(Class<?> targetClz) {
         Class<? extends Command> commandClz = getCommandFromExecutor(targetClz);
+
         CommandInvocation commandInvocation = new CommandInvocation();
         commandInvocation.setCommandExecutor((CommandExecutor) applicationContext.getBean(targetClz));
         commandInvocation.setPreInterceptors(collectInterceptors(commandClz, true));
         commandInvocation.setPostInterceptors(collectInterceptors(commandClz, false));
+
         commandHub.getCommandRepository().put(commandClz, commandInvocation);
     }
 
@@ -62,20 +65,30 @@ public class CommandRegister implements Register, ApplicationContextAware {
     private Iterable<CommandInterceptor> collectInterceptors(Class<? extends Command> commandClass, boolean pre) {
         /**
          * add 通用的Interceptors
+         * 这里将 commandInvocation 的拦截器迭代器指向 commandHub 的全局迭代器, 引用关系
+         * 这用就不用处理 扫描 command 与 Interceptors 的先后关系
          */
         Iterable<CommandInterceptor> commandItr = Iterables.concat((pre ? commandHub.getGlobalPreInterceptors() : commandHub.getGlobalPostInterceptors()));
+
         /**
          * add command自己专属的Interceptors
+         * fixBug: 合并专属 Interceptors
          */
-        Iterables.concat(commandItr, (pre ? commandHub.getPreInterceptors() : commandHub.getPostInterceptors()).get(commandClass));
+        List<CommandInterceptor> selfInterceptors = (pre ? commandHub.getPreInterceptors() : commandHub.getPostInterceptors()).get(commandClass);
+        commandItr = Iterables.concat(commandItr, selfInterceptors);
+
         /**
          * add parents的Interceptors
+         * fixBug: 1. 合并parents Interceptors
+         *         2. get(commandClass) -->  get(superClass)
          */
         Class<?> superClass = commandClass.getSuperclass();
         while (Command.class.isAssignableFrom(superClass)) {
-            Iterables.concat(commandItr, (pre ? commandHub.getPreInterceptors() : commandHub.getPostInterceptors()).get(commandClass));
+            List<CommandInterceptor> parentInterceptors = (pre ? commandHub.getPreInterceptors() : commandHub.getPostInterceptors()).get(superClass);
+            commandItr = Iterables.concat(commandItr, parentInterceptors);
             superClass = superClass.getSuperclass();
         }
+
         return commandItr;
     }
 

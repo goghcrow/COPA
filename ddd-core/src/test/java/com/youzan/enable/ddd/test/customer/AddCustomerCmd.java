@@ -1,7 +1,6 @@
 package com.youzan.enable.ddd.test.customer;
 
 
-import com.youzan.enable.ddd.dto.Command;
 import lombok.Data;
 
 import javax.validation.Valid;
@@ -13,7 +12,7 @@ import javax.validation.constraints.NotNull;
  * @author Frank Zhang 2018-01-06 7:28 PM
  */
 @Data
-public class AddCustomerCmd extends Command {
+public class AddCustomerCmd extends BaseCommand {
 
     @NotNull
     @Valid

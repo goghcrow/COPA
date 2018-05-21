@@ -1,11 +1,13 @@
 package com.youzan.enable.ddd.command;
 
-import com.google.common.collect.FluentIterable;
 import com.youzan.api.common.response.BaseResult;
 import com.youzan.enable.ddd.dto.Command;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 public class CommandInvocation<R extends BaseResult, C extends Command> {
     
@@ -20,8 +22,10 @@ public class CommandInvocation<R extends BaseResult, C extends Command> {
         
     }
     
-    public CommandInvocation(CommandExecutor<R, C> commandExecutor, List<CommandInterceptor> preInterceptors,
-                             List<CommandInterceptor> postInterceptors){
+    public CommandInvocation(CommandExecutor<R, C> commandExecutor,
+                             List<CommandInterceptor> preInterceptors,
+                             List<CommandInterceptor> postInterceptors)
+    {
         this.commandExecutor = commandExecutor;
         this.preInterceptors = preInterceptors;
         this.postInterceptors = postInterceptors;
@@ -41,13 +45,21 @@ public class CommandInvocation<R extends BaseResult, C extends Command> {
     }
 
     private void postIntercept(C command, R response) {
-        for (CommandInterceptor postInterceptor : FluentIterable.from(postInterceptors).toSet()) {
+        Set<CommandInterceptor> interceptors = StreamSupport
+                .stream(postInterceptors.spliterator(), false)
+                .collect(Collectors.toSet());
+
+        for (CommandInterceptor postInterceptor : interceptors) {
             postInterceptor.postIntercept(command, response);
         }
     }
 
     private void preIntercept(C command) {
-        for (CommandInterceptor preInterceptor : FluentIterable.from(preInterceptors).toSet()) {
+        Set<CommandInterceptor> interceptors = StreamSupport
+                .stream(preInterceptors.spliterator(), false)
+                .collect(Collectors.toSet());
+
+        for (CommandInterceptor preInterceptor : interceptors) {
             preInterceptor.preIntercept(command);
         }
     }

@@ -1,7 +1,6 @@
 package com.youzan.enable.ddd.fsm;
 
 import lombok.Getter;
-import lombok.ToString;
 
 /**
  * @author chuxiaofeng

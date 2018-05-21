@@ -1,7 +1,7 @@
 package com.youzan.enable.ddd.test.customer.interceptor;
 
-import com.youzan.enable.ddd.command.CommandInterceptor;
 import com.youzan.enable.ddd.annotation.PreInterceptor;
+import com.youzan.enable.ddd.command.CommandInterceptor;
 import com.youzan.enable.ddd.dto.Command;
 import com.youzan.enable.ddd.exception.ParamException;
 import com.youzan.enable.ddd.validator.MessageInterpolator;
@@ -22,8 +22,11 @@ import java.util.Set;
 public class ValidationInterceptor implements CommandInterceptor {
 
     //Enable fail fast, which will improve performance
-    private ValidatorFactory factory = Validation.byProvider(HibernateValidator.class).configure().failFast(true)
-            .messageInterpolator(new MessageInterpolator()).buildValidatorFactory();
+    private ValidatorFactory factory = Validation.byProvider(HibernateValidator.class)
+            .configure()
+            .failFast(true)
+            .messageInterpolator(new MessageInterpolator())
+            .buildValidatorFactory();
 
     @Override
     public void preIntercept(Command command) {

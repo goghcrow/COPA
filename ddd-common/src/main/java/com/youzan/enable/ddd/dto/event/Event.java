@@ -2,8 +2,6 @@ package com.youzan.enable.ddd.dto.event;
 
 import com.youzan.enable.ddd.dto.DTO;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 /**
  * @author shawnzhan.zxy

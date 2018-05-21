@@ -1,9 +1,9 @@
 package com.youzan.enable.ddd.boot.register;
 
+import com.youzan.enable.ddd.annotation.PreInterceptor;
 import com.youzan.enable.ddd.boot.Register;
 import com.youzan.enable.ddd.command.CommandHub;
 import com.youzan.enable.ddd.command.CommandInterceptor;
-import com.youzan.enable.ddd.annotation.PreInterceptor;
 import com.youzan.enable.ddd.dto.Command;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

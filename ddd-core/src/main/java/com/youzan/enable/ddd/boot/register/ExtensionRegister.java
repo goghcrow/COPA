@@ -1,13 +1,9 @@
 package com.youzan.enable.ddd.boot.register;
 
 import com.youzan.enable.ddd.boot.Register;
-import com.youzan.enable.ddd.common.CoreConstant;
 import com.youzan.enable.ddd.exception.InfraException;
-import com.youzan.enable.ddd.annotation.Extension;
-import com.youzan.enable.ddd.extension.ExtensionRepository;
 import com.youzan.enable.ddd.extension.ExtensionPoint;
-import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
+import com.youzan.enable.ddd.extension.ExtensionRepository;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;

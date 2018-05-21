@@ -1,9 +1,6 @@
 package com.youzan.enable.ddd.test;
 
 import com.youzan.enable.ddd.fsm.*;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 
 import java.util.HashSet;
 import java.util.Scanner;

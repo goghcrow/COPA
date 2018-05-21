@@ -1,17 +1,12 @@
 package com.youzan.enable.ddd.boot;
 
+import com.youzan.enable.ddd.annotation.*;
 import com.youzan.enable.ddd.boot.register.*;
-import com.youzan.enable.ddd.annotation.Command;
-import com.youzan.enable.ddd.annotation.PostInterceptor;
-import com.youzan.enable.ddd.annotation.PreInterceptor;
 import com.youzan.enable.ddd.common.CoreConstant;
-import com.youzan.enable.ddd.annotation.Event;
 import com.youzan.enable.ddd.exception.InfraException;
-import com.youzan.enable.ddd.annotation.Extension;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import java.lang.reflect.Modifier;
 
 /**
  * RegisterFactory

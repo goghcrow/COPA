@@ -4,7 +4,6 @@ import com.youzan.enable.ddd.annotation.Extension;
 import com.youzan.enable.ddd.common.CoreConstant;
 import com.youzan.enable.ddd.exception.InfraException;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import org.apache.commons.lang3.ArrayUtils;

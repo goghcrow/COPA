@@ -1,9 +1,5 @@
 package com.youzan.enable.ddd.common;
 
-import com.youzan.enable.ddd.extension.ExtensionPoint;
-import com.youzan.enable.ddd.rule.Rule;
-import com.youzan.enable.ddd.validator.Validator;
-
 /**
  * CoreConstant 
  * @author fulan.zjf 2017-11-04

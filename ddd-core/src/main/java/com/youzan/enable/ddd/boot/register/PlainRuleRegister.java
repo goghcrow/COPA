@@ -1,8 +1,8 @@
 package com.youzan.enable.ddd.boot.register;
 
 import com.youzan.enable.ddd.boot.Register;
-import com.youzan.enable.ddd.rule.Rule;
 import com.youzan.enable.ddd.rule.PlainRuleRepository;
+import com.youzan.enable.ddd.rule.Rule;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;

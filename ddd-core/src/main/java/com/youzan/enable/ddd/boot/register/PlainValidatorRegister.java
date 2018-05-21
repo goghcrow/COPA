@@ -1,8 +1,8 @@
 package com.youzan.enable.ddd.boot.register;
 
 import com.youzan.enable.ddd.boot.Register;
-import com.youzan.enable.ddd.validator.Validator;
 import com.youzan.enable.ddd.validator.PlainValidatorRepository;
+import com.youzan.enable.ddd.validator.Validator;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;

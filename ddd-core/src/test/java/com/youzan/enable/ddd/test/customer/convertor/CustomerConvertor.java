@@ -2,8 +2,8 @@ package com.youzan.enable.ddd.test.customer.convertor;
 
 import com.youzan.enable.ddd.common.ApplicationContextHelper;
 import com.youzan.enable.ddd.convertor.Convertor;
-import com.youzan.enable.ddd.test.customer.CustomerDTO;
 import com.youzan.enable.ddd.test.customer.CustomerDO;
+import com.youzan.enable.ddd.test.customer.CustomerDTO;
 import com.youzan.enable.ddd.test.customer.entity.CustomerEntity;
 import org.springframework.stereotype.Component;
 
